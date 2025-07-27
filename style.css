@@ -1,0 +1,160 @@
+/*
+ * Fichier CSS personnalisé - Simple et Virtuel
+ * Auteur : Manus AI
+ * Date : 27 juillet 2025
+ *
+ * Ce fichier fournit des styles de base et des utilitaires pour une apparence propre et minimaliste.
+ * Il est conçu pour être facilement extensible et compatible avec des frameworks comme Tailwind CSS.
+ */
+
+/* --- Styles Généraux du Corps de Page --- */
+body {
+    /* Utilise la police Inter définie dans le HTML, avec une alternative générique sans-serif */
+    font-family: 'Inter', sans-serif;
+    /* Couleur de fond légèrement grise pour un aspect doux, compatible avec le style existant */
+    background-color: #f8f8f8;
+    /* Assure un défilement fluide pour une meilleure expérience utilisateur */
+    scroll-behavior: smooth;
+    /* Empêche la sélection de texte non désirée sur certains éléments interactifs */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Styles de Typographie de Base --- */
+/* Styles pour les titres principaux, assurant une bonne hiérarchie visuelle */
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+    margin-bottom: 0.8em;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.75em;
+    font-weight: 500;
+}
+
+/* Styles pour les paragraphes, optimisés pour la lisibilité */
+p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+/* --- Classes Utilitaires pour Éléments Virtuels --- */
+/* Classe pour un conteneur centré, utile pour les modales ou les pop-ups */
+.virtual-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Classe pour un overlay semi-transparent, pour les fonds de modales */
+.virtual-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* --- Styles pour les Liens --- */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* --- Styles pour les Boutons de Base --- */
+.btn-base {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: #28a745; /* Vert primaire */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Gris secondaire */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* --- Formulaires de Base --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* --- Responsive de Base (Mobile First) --- */
+/* Les styles ci-dessus sont déjà "mobile-first" par défaut.
+   Ajoutez des media queries ici pour des ajustements sur des écrans plus grands si nécessaire. */
+@media (min-width: 768px) {
+    /* Exemple: Ajuster la taille de police des titres sur les grands écrans */
+    h1 {
+        font-size: 3em;
+    }
+}
+
+

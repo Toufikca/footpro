@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pageTitle">نظام إدارة التدريب الرياضي</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .bg-football-pattern {
+            background-image: url('https://placehold.co/1920x1080/004d00/ffffff?text=Football+Pitch+Background');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+        }
+        html[dir="rtl"] .close-button {
+            left: 10px;
+            right: auto;
+        }
+        html[dir="ltr"] .close-button {
+            right: 10px;
+            left: auto;
+        }
+        
+        /* Language switcher styles */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            z-index: 1001;
+            background: white;
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        html[dir="rtl"] .language-switcher {
+            left: 20px;
+        }
+        html[dir="ltr"] .language-switcher {
+            right: 20px;
+        }
+        
+        .language-switcher select {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <select id="language-switcher">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-green-600 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold" data-i18n="appTitle">نظام إدارة التدريب</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-green-200" data-i18n="home">الرئيسية</a>
+                <a href="#" id="login-nav-link" class="hover:text-green-200" data-i18n="login">تسجيل الدخول</a>
+                <a href="#about" class="hover:text-green-200" data-i18n="about">معلومات حول الموقع</a>
+                <a href="#contact" class="hover:text-green-200" data-i18n="contact">اتصل بنا</a>
+                <button id="logout-button" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded" style="display: none;" data-i18n="logoutButton">تسجيل الخروج</button>
+            </div>
+            <button id="menu-button" class="md:hidden">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="nav-links" class="hidden md:hidden mt-4 space-y-2">
+            <a href="#home" class="block hover:text-green-200" data-i18n="home">الرئيسية</a>
+            <a href="#" class="block hover:text-green-200" data-i18n="login">تسجيل الدخول</a>
+            <a href="#about" class="block hover:text-green-200" data-i18n="about">معلومات حول الموقع</a>
+            <a href="#contact" class="block hover:text-green-200" data-i18n="contact">اتصل بنا</a>
+        </div>
+    </nav>
+
+    <!-- User ID Display -->
+    <div class="bg-blue-100 p-2 text-center">
+        <span id="user-id-display" data-i18n="userIdNotAvailable">معرف المستخدم: غير متاح</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-football-pattern min-h-screen flex items-center justify-center text-white">
+        <div class="text-center bg-black bg-opacity-50 p-8 rounded-lg">
+            <h2 class="text-4xl md:text-6xl font-bold mb-4" data-i18n="welcomeTitle">مرحبًا بك في نظام إدارة التدريب الرياضي</h2>
+            <p class="text-xl md:text-2xl mb-8" data-i18n="welcomeText">أدوات متقدمة للمدربين لإنشاء برامج تدريبية مخصصة في كرة القدم.</p>
+            <button id="get-started-button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg text-lg" data-i18n="getStarted">ابدأ الآن</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 space-y-12">
+        <!-- Coach Profile Section -->
+        <section class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-600" data-i18n="coachProfileTitle">إدارة ملف المدرب</h3>
+            <form id="coach-profile-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" data-i18n="nameLabel">الاسم:</label>
+                    <input type="text" id="coach-name" class="w-full p-3 border border-gray-300 rounded-lg" data-i18n="namePlaceholder" placeholder="اسم المدرب">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" data-i18n="ageLabel">العمر:</label>
+                    <input type="number" id="coach-age" class="w-full p-3 border border-gray-300 rounded-lg" data-i18n="agePlaceholder" placeholder="عمر المدرب">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" data-i18n="nationalityLabel">الجنسية:</label>
+                    <input type="text" id="coach-nationality" class="w-full p-3 border border-gray-300 rounded-lg" data-i18n="nationalityPlaceholder" placeholder="جنسية المدرب">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" data-i18n="phoneLabel">رقم الهاتف:</label>
+                    <input type="tel" id="coach-phone" class="w-full p-3 border border-gray-300 rounded-lg" data-i18n="phonePlaceholder" placeholder="رقم هاتف المدرب">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-gray-700 font-medium mb-2" data-i18n="coachLevelLabel">المستوى التدريبي:</label>
+                    <select id="coach-level" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <option value="" data-i18n="selectLevel">اختر المستوى</option>
+                        <option value="D">D</option>
+                        <option value="C">C</option>
+                        <option value="B">B</option>
+                        <option value="A">A</option>
+                        <option value="PRO">PRO</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2">
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg" data-i18n="saveCoachProfile">حفظ بيانات المدرب</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Age Group Selection -->
+        <section class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-600" data-i18n="ageGroupTitle">اختيار الفئة العمرية</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" name="age_group" value="u15" class="text-green-600">
+                    <span data-i18n="u15">أقل من 15</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" name="age_group" value="u17" class="text-green-600">
+                    <span data-i18n="u17">أقل من 17</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" name="age_group" value="u19" class="text-green-600">
+                    <span data-i18n="u19">أقل من 19</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" name="age_group" value="women" class="text-green-600">
+                    <span data-i18n="women">الفريق النسائي</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="radio" name="age_group" value="seniors" class="text-green-600">
+                    <span data-i18n="seniors">الأكابر</span>
+                </label>
+            </div>
+            <div id="age-group-instructions" class="hidden bg-blue-50 p-4 rounded-lg mb-4">
+                <h4 class="font-bold mb-2" data-i18n="ageGroupInstructionsTitle">تعليمات الفئة العمرية:</h4>
+                <p id="current-age-group-instruction"></p>
+            </div>
+            <button id="save-age-group" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg" data-i18n="saveAgeGroup">حفظ الفئة العمرية</button>
+        </section>
+    </main>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="text-2xl font-bold mb-6 text-center" data-i18n="authModalTitle">تسجيل الدخول / التسجيل</h2>
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" data-i18n="emailLabel">البريد الإلكتروني:</label>
+                    <input type="email" id="auth-email" class="w-full p-3 border border-gray-300 rounded-lg" data-i18n="emailPlaceholder" placeholder="أدخل بريدك الإلكتروني">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" data-i18n="passwordLabel">كلمة المرور:</label>
+                    <input type="password" id="auth-password" class="w-full p-3 border border-gray-300 rounded-lg" data-i18n="passwordPlaceholder" placeholder="أدخل كلمة المرور">
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" id="login-button" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg" data-i18n="loginButton">تسجيل الدخول</button>
+                    <button type="button" id="register-button" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg" data-i18n="registerButton">تسجيل جديد</button>
+                </div>
+            </form>
+            <div id="auth-message" class="mt-4 text-center"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 text-center">
+        <p data-i18n="footerText">© 2025 نظام إدارة التدريب الرياضي. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // Translations Object
+        const translations = {
+            ar: {
+                pageTitle: "نظام إدارة التدريب الرياضي",
+                appTitle: "نظام إدارة التدريب",
+                home: "الرئيسية",
+                login: "تسجيل الدخول",
+                about: "معلومات حول الموقع",
+                contact: "اتصل بنا",
+                userIdDisplay: "معرف المستخدم",
+                userIdNotAvailable: "معرف المستخدم: غير متاح",
+                welcomeTitle: "مرحبًا بك في نظام إدارة التدريب الرياضي",
+                welcomeText: "أدوات متقدمة للمدربين لإنشاء برامج تدريبية مخصصة في كرة القدم.",
+                getStarted: "ابدأ الآن",
+                authModalTitle: "تسجيل الدخول / التسجيل",
+                emailLabel: "البريد الإلكتروني:",
+                emailPlaceholder: "أدخل بريدك الإلكتروني",
+                passwordLabel: "كلمة المرور:",
+                passwordPlaceholder: "أدخل كلمة المرور",
+                loginButton: "تسجيل الدخول",
+                registerButton: "تسجيل جديد",
+                logoutButton: "تسجيل الخروج",
+                coachProfileTitle: "إدارة ملف المدرب",
+                nameLabel: "الاسم:",
+                namePlaceholder: "اسم المدرب",
+                ageLabel: "العمر:",
+                agePlaceholder: "عمر المدرب",
+                nationalityLabel: "الجنسية:",
+                nationalityPlaceholder: "جنسية المدرب",
+                phoneLabel: "رقم الهاتف:",
+                phonePlaceholder: "رقم هاتف المدرب",
+                coachLevelLabel: "المستوى التدريبي:",
+                selectLevel: "اختر المستوى",
+                saveCoachProfile: "حفظ بيانات المدرب",
+                ageGroupTitle: "اختيار الفئة العمرية",
+                u15: "أقل من 15",
+                u17: "أقل من 17",
+                u19: "أقل من 19",
+                women: "الفريق النسائي",
+                seniors: "الأكابر",
+                ageGroupInstructionsTitle: "تعليمات الفئة العمرية:",
+                ageGroupU15Instruction: "تعليمات خاصة بالفئة العمرية أقل من 15 سنة: التركيز على الأساسيات وتطوير المهارات الفردية.",
+                ageGroupU17Instruction: "تعليمات خاصة بالفئة العمرية أقل من 17 سنة: تطوير الجوانب التكتيكية والفهم الجماعي.",
+                ageGroupU19Instruction: "تعليمات خاصة بالفئة العمرية أقل من 19 سنة: التركيز على اللياقة البدنية والتحمل، وصقل المهارات المتقدمة.",
+                ageGroupWomenInstruction: "تعليمات خاصة بالفريق النسائي: برامج تدريبية مصممة لتناسب الاحتياجات البدنية والتكتيكية للاعبات.",
+                ageGroupSeniorsInstruction: "تعليمات خاصة بفئة الأكابر: برامج تدريبية عالية المستوى، تركز على الأداء التنافسي والتكتيكات المعقدة.",
+                saveAgeGroup: "حفظ الفئة العمرية",
+                footerText: "© 2025 نظام إدارة التدريب الرياضي. جميع الحقوق محفوظة."
+            },
+            en: {
+                pageTitle: "Sports Training Management System",
+                appTitle: "Training Management System",
+                home: "Home",
+                login: "Login",
+                about: "About",
+                contact: "Contact Us",
+                userIdDisplay: "User ID",
+                userIdNotAvailable: "User ID: Not Available",
+                welcomeTitle: "Welcome to the Sports Training Management System",
+                welcomeText: "Advanced tools for coaches to create customized training programs in football.",
+                getStarted: "Get Started",
+                authModalTitle: "Login / Register",
+                emailLabel: "Email:",
+                emailPlaceholder: "Enter your email",
+                passwordLabel: "Password:",
+                passwordPlaceholder: "Enter your password",
+                loginButton: "Login",
+                registerButton: "Register",
+                logoutButton: "Logout",
+                coachProfileTitle: "Coach Profile Management",
+                nameLabel: "Name:",
+                namePlaceholder: "Coach name",
+                ageLabel: "Age:",
+                agePlaceholder: "Coach age",
+                nationalityLabel: "Nationality:",
+                nationalityPlaceholder: "Coach nationality",
+                phoneLabel: "Phone Number:",
+                phonePlaceholder: "Coach phone number",
+                coachLevelLabel: "Coaching Level:",
+                selectLevel: "Select Level",
+                saveCoachProfile: "Save Coach Profile",
+                ageGroupTitle: "Age Group Selection",
+                u15: "Under 15",
+                u17: "Under 17",
+                u19: "Under 19",
+                women: "Women's Team",
+                seniors: "Seniors",
+                ageGroupInstructionsTitle: "Age Group Instructions:",
+                ageGroupU15Instruction: "Instructions for Under 15 age group: Focus on fundamentals and developing individual skills.",
+                ageGroupU17Instruction: "Instructions for Under 17 age group: Develop tactical aspects and team understanding.",
+                ageGroupU19Instruction: "Instructions for Under 19 age group: Focus on physical fitness and endurance, refining advanced skills.",
+                ageGroupWomenInstruction: "Instructions for Women's Team: Training programs designed to suit the physical and tactical needs of female players.",
+                ageGroupSeniorsInstruction: "Instructions for Seniors: High-level training programs focusing on competitive performance and complex tactics.",
+                saveAgeGroup: "Save Age Group",
+                footerText: "© 2025 Sports Training Management System. All rights reserved."
+            },
+            fr: {
+                pageTitle: "Système de Gestion d'Entraînement Sportif",
+                appTitle: "Système de Gestion d'Entraînement",
+                home: "Accueil",
+                login: "Connexion",
+                about: "À propos",
+                contact: "Contactez-nous",
+                userIdDisplay: "ID Utilisateur",
+                userIdNotAvailable: "ID Utilisateur : Non disponible",
+                welcomeTitle: "Bienvenue dans le Système de Gestion d'Entraînement Sportif",
+                welcomeText: "Outils avancés pour les entraîneurs pour créer des programmes d'entraînement personnalisés en football.",
+                getStarted: "Commencer",
+                authModalTitle: "Connexion / Inscription",
+                emailLabel: "Email :",
+                emailPlaceholder: "Entrez votre email",
+                passwordLabel: "Mot de passe :",
+                passwordPlaceholder: "Entrez votre mot de passe",
+                loginButton: "Se connecter",
+                registerButton: "S'inscrire",
+                logoutButton: "Se déconnecter",
+                coachProfileTitle: "Gestion du Profil d'Entraîneur",
+                nameLabel: "Nom :",
+                namePlaceholder: "Nom de l'entraîneur",
+                ageLabel: "Âge :",
+                agePlaceholder: "Âge de l'entraîneur",
+                nationalityLabel: "Nationalité :",
+                nationalityPlaceholder: "Nationalité de l'entraîneur",
+                phoneLabel: "Numéro de téléphone :",
+                phonePlaceholder: "Numéro de téléphone de l'entraîneur",
+                coachLevelLabel: "Niveau d'entraînement :",
+                selectLevel: "Sélectionner le niveau",
+                saveCoachProfile: "Sauvegarder le profil d'entraîneur",
+                ageGroupTitle: "Sélection de Groupe d'Âge",
+                u15: "Moins de 15 ans",
+                u17: "Moins de 17 ans",
+                u19: "Moins de 19 ans",
+                women: "Équipe Féminine",
+                seniors: "Seniors",
+                ageGroupInstructionsTitle: "Instructions du Groupe d'Âge :",
+                ageGroupU15Instruction: "Instructions pour le groupe moins de 15 ans : Se concentrer sur les fondamentaux et développer les compétences individuelles.",
+                ageGroupU17Instruction: "Instructions pour le groupe moins de 17 ans : Développer les aspects tactiques et la compréhension d'équipe.",
+                ageGroupU19Instruction: "Instructions pour le groupe moins de 19 ans : Se concentrer sur la condition physique et l'endurance, affiner les compétences avancées.",
+                ageGroupWomenInstruction: "Instructions pour l'équipe féminine : Programmes d'entraînement conçus pour répondre aux besoins physiques et tactiques des joueuses.",
+                ageGroupSeniorsInstruction: "Instructions pour les seniors : Programmes d'entraînement de haut niveau axés sur la performance compétitive et les tactiques complexes.",
+                saveAgeGroup: "Sauvegarder le groupe d'âge",
+                footerText: "© 2025 Système de Gestion d'Entraînement Sportif. Tous droits réservés."
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'ar';
+
+        // Function to set the language and update UI
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+
+            const htmlTag = document.getElementById('html-tag');
+            if (htmlTag) {
+                htmlTag.lang = lang;
+                htmlTag.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+            }
+
+            // Update language switcher position
+            const languageSwitcher = document.querySelector('.language-switcher');
+            if (languageSwitcher) {
+                if (lang === 'ar') {
+                    languageSwitcher.style.left = '20px';
+                    languageSwitcher.style.right = 'auto';
+                } else {
+                    languageSwitcher.style.right = '20px';
+                    languageSwitcher.style.left = 'auto';
+                }
+            }
+
+            // Update modal close button position
+            const closeButton = document.querySelector('.modal .close-button');
+            if (closeButton) {
+                if (lang === 'ar') {
+                    closeButton.style.left = '10px';
+                    closeButton.style.right = 'auto';
+                } else {
+                    closeButton.style.right = '10px';
+                    closeButton.style.left = 'auto';
+                }
+            }
+
+            // Translate static elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update age group instructions if visible
+            const currentAgeGroup = document.querySelector('input[name="age_group"]:checked');
+            if (currentAgeGroup) {
+                showAgeGroupInstructions(currentAgeGroup.value);
+            }
+        }
+
+        // Function to show age group instructions
+        function showAgeGroupInstructions(ageGroup) {
+            const instructionsDiv = document.getElementById('age-group-instructions');
+            const instructionText = document.getElementById('current-age-group-instruction');
+            
+            const instructionKey = `ageGroup${ageGroup.charAt(0).toUpperCase() + ageGroup.slice(1)}Instruction`;
+            if (translations[currentLang][instructionKey]) {
+                instructionText.textContent = translations[currentLang][instructionKey];
+                instructionsDiv.classList.remove('hidden');
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial language
+            setLanguage(currentLang);
+            document.getElementById('language-switcher').value = currentLang;
+
+            // Language switcher event
+            document.getElementById('language-switcher').addEventListener('change', (e) => {
+                setLanguage(e.target.value);
+            });
+
+            // Mobile menu toggle
+            const menuButton = document.getElementById('menu-button');
+            const navLinks = document.getElementById('nav-links');
+            if (menuButton) {
+                menuButton.addEventListener('click', () => {
+                    navLinks.classList.toggle('hidden');
+                });
+            }
+
+            // Modal functionality
+            const authModal = document.getElementById('auth-modal');
+            const getStartedButton = document.getElementById('get-started-button');
+            const loginNavLink = document.getElementById('login-nav-link');
+            const closeButton = document.querySelector('.close-button');
+
+            if (getStartedButton) {
+                getStartedButton.addEventListener('click', () => {
+                    authModal.style.display = 'flex';
+                });
+            }
+
+            if (loginNavLink) {
+                loginNavLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    authModal.style.display = 'flex';
+                });
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                    authModal.style.display = 'none';
+                });
+            }
+
+            window.addEventListener('click', (event) => {
+                if (event.target == authModal) {
+                    authModal.style.display = 'none';
+                }
+            });
+
+            // Age group selection
+            const ageGroupRadios = document.querySelectorAll('input[name="age_group"]');
+            ageGroupRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        showAgeGroupInstructions(e.target.value);
+                    }
+                });
+            });
+
+            // Form submissions (simplified for demo)
+            const coachProfileForm = document.getElementById('coach-profile-form');
+            if (coachProfileForm) {
+                coachProfileForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert(translations[currentLang].saveCoachProfile || 'Profile saved!');
+                });
+            }
+
+            const saveAgeGroupButton = document.getElementById('save-age-group');
+            if (saveAgeGroupButton) {
+                saveAgeGroupButton.addEventListener('click', () => {
+                    const selectedAgeGroup = document.querySelector('input[name="age_group"]:checked');
+                    if (selectedAgeGroup) {
+                        alert(`${translations[currentLang].saveAgeGroup}: ${translations[currentLang][selectedAgeGroup.value]}`);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
