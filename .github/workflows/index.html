@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Système de Gestion d'Entraînement de Football</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <i class="fas fa-futbol fa-spin"></i>
+            <p>Chargement...</p>
+        </div>
+    </div>
+
+    <!-- Navigation principale -->
+    <nav id="main-nav" class="main-nav hidden">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-futbol"></i>
+                <span>Football Manager</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" data-view="dashboard"><i class="fas fa-home"></i> Tableau de bord</a></li>
+                <li><a href="#" data-view="coach-profile"><i class="fas fa-user"></i> Profil Coach</a></li>
+                <li><a href="#" data-view="age-category"><i class="fas fa-users"></i> Catégorie d'âge</a></li>
+                <li><a href="#" data-view="calendar"><i class="fas fa-calendar"></i> Calendrier</a></li>
+                <li><a href="#" data-view="players"><i class="fas fa-running"></i> Joueurs</a></li>
+                <li><a href="#" data-view="analysis"><i class="fas fa-chart-bar"></i> Analyse</a></li>
+                <li><a href="#" data-view="training-plans"><i class="fas fa-clipboard-list"></i> Plans d'entraînement</a></li>
+                <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Container principal -->
+    <div id="app-container" class="app-container">
+        
+        <!-- Page d'accueil -->
+        <section id="home-view" class="view active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1>Système de Gestion d'Entraînement de Football</h1>
+                    <p>Gérez votre équipe, analysez les performances et créez des programmes d'entraînement personnalisés</p>
+                    <div class="hero-buttons">
+                        <button id="login-btn" class="btn btn-primary">Se connecter</button>
+                        <button id="register-btn" class="btn btn-secondary">S'inscrire</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-futbol"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page de connexion -->
+        <section id="login-view" class="view">
+            <div class="auth-container">
+                <div class="auth-form">
+                    <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Mot de passe</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                        <p class="auth-switch">Pas de compte ? <a href="#" id="switch-to-register">S'inscrire</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page d'inscription -->
+        <section id="register-view" class="view">
+            <div class="auth-container">
+                <div class="auth-form">
+                    <h2><i class="fas fa-user-plus"></i> Inscription</h2>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="register-name">Nom complet</label>
+                            <input type="text" id="register-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Mot de passe</label>
+                            <input type="password" id="register-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        <p class="auth-switch">Déjà un compte ? <a href="#" id="switch-to-login">Se connecter</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tableau de bord -->
+        <section id="dashboard-view" class="view">
+            <div class="dashboard-container">
+                <h1>Tableau de bord</h1>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3 id="total-players">0</h3>
+                            <p>Joueurs</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="stat-info">
+                            <h3 id="total-trainings">0</h3>
+                            <p>Entraînements</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-trophy"></i>
+                        <div class="stat-info">
+                            <h3 id="total-matches">0</h3>
+                            <p>Matchs</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <div class="stat-info">
+                            <h3 id="team-average">0</h3>
+                            <p>Moyenne équipe</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>Répartition des compétences de l'équipe</h3>
+                        <canvas id="team-skills-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Prochains événements</h3>
+                        <div id="upcoming-events" class="events-list">
+                            <!-- Les événements seront ajoutés dynamiquement -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profil du coach -->
+        <section id="coach-profile-view" class="view">
+            <div class="profile-container">
+                <h1>Profil du Coach</h1>
+                <form id="coach-profile-form" class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coach-name">Nom complet</label>
+                            <input type="text" id="coach-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coach-age">Âge</label>
+                            <input type="number" id="coach-age" min="18" max="80">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coach-nationality">Nationalité</label>
+                            <input type="text" id="coach-nationality">
+                        </div>
+                        <div class="form-group">
+                            <label for="coach-phone">Téléphone</label>
+                            <input type="tel" id="coach-phone">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coach-continent">Continent de certification</label>
+                            <select id="coach-continent">
+                                <option value="">Sélectionner...</option>
+                                <option value="europe">Europe</option>
+                                <option value="africa">Afrique</option>
+                                <option value="asia">Asie</option>
+                                <option value="america">Amérique</option>
+                                <option value="oceania">Océanie</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="coach-license">Licence d'entraîneur</label>
+                            <select id="coach-license">
+                                <option value="">Sélectionner...</option>
+                                <option value="D">Licence D</option>
+                                <option value="C">Licence C</option>
+                                <option value="B">Licence B</option>
+                                <option value="A">Licence A</option>
+                                <option value="PRO">Licence PRO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="coach-style">Style de jeu préféré</label>
+                        <select id="coach-style">
+                            <option value="">Sélectionner...</option>
+                            <option value="offensive">Jeu offensif</option>
+                            <option value="defensive">Jeu défensif</option>
+                            <option value="possession">Jeu de possession</option>
+                            <option value="adaptive">Adaptatif selon les joueurs</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Sélection de catégorie d'âge -->
+        <section id="age-category-view" class="view">
+            <div class="category-container">
+                <h1>Sélection de la catégorie d'âge</h1>
+                <div class="category-grid">
+                    <div class="category-card" data-category="U15">
+                        <i class="fas fa-child"></i>
+                        <h3>U15</h3>
+                        <p>Moins de 15 ans</p>
+                        <ul>
+                            <li>Focus sur les bases techniques</li>
+                            <li>Développement de la coordination</li>
+                            <li>Apprentissage du jeu collectif</li>
+                        </ul>
+                    </div>
+                    <div class="category-card" data-category="U17">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>U17</h3>
+                        <p>Moins de 17 ans</p>
+                        <ul>
+                            <li>Perfectionnement technique</li>
+                            <li>Introduction tactique avancée</li>
+                            <li>Développement physique</li>
+                        </ul>
+                    </div>
+                    <div class="category-card" data-category="U19">
+                        <i class="fas fa-user"></i>
+                        <h3>U19</h3>
+                        <p>Moins de 19 ans</p>
+                        <ul>
+                            <li>Préparation au football adulte</li>
+                            <li>Tactiques complexes</li>
+                            <li>Condition physique optimale</li>
+                        </ul>
+                    </div>
+                    <div class="category-card" data-category="women">
+                        <i class="fas fa-female"></i>
+                        <h3>Équipe féminine</h3>
+                        <p>Football féminin</p>
+                        <ul>
+                            <li>Approche spécialisée</li>
+                            <li>Développement technique</li>
+                            <li>Stratégies adaptées</li>
+                        </ul>
+                    </div>
+                    <div class="category-card" data-category="senior">
+                        <i class="fas fa-users"></i>
+                        <h3>Seniors</h3>
+                        <p>Équipe première</p>
+                        <ul>
+                            <li>Performance maximale</li>
+                            <li>Tactiques avancées</li>
+                            <li>Gestion de carrière</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="category-selection" class="category-selection hidden">
+                    <p>Catégorie sélectionnée: <span id="selected-category"></span></p>
+                    <button id="confirm-category" class="btn btn-primary">Confirmer la sélection</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendrier -->
+        <section id="calendar-view" class="view">
+            <div class="calendar-container">
+                <h1>Calendrier d'entraînement</h1>
+                <div class="calendar-controls">
+                    <button id="prev-week" class="btn btn-secondary"><i class="fas fa-chevron-left"></i></button>
+                    <h2 id="current-week"></h2>
+                    <button id="next-week" class="btn btn-secondary"><i class="fas fa-chevron-right"></i></button>
+                    <button id="add-event-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter événement</button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-header">
+                        <div class="time-column">Heure</div>
+                        <div class="day-column">Lundi</div>
+                        <div class="day-column">Mardi</div>
+                        <div class="day-column">Mercredi</div>
+                        <div class="day-column">Jeudi</div>
+                        <div class="day-column">Vendredi</div>
+                        <div class="day-column">Samedi</div>
+                        <div class="day-column">Dimanche</div>
+                    </div>
+                    <div id="calendar-body" class="calendar-body">
+                        <!-- Les créneaux horaires seront générés dynamiquement -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gestion des joueurs -->
+        <section id="players-view" class="view">
+            <div class="players-container">
+                <div class="players-header">
+                    <h1>Gestion des joueurs</h1>
+                    <button id="add-player-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter joueur</button>
+                </div>
+                <div class="players-filters">
+                    <input type="text" id="player-search" placeholder="Rechercher un joueur...">
+                    <select id="position-filter">
+                        <option value="">Toutes les positions</option>
+                        <option value="GK">Gardien</option>
+                        <option value="DEF">Défenseur</option>
+                        <option value="MID">Milieu</option>
+                        <option value="ATT">Attaquant</option>
+                    </select>
+                </div>
+                <div id="players-grid" class="players-grid">
+                    <!-- Les cartes de joueurs seront ajoutées dynamiquement -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Analyse d'équipe -->
+        <section id="analysis-view" class="view">
+            <div class="analysis-container">
+                <h1>Analyse d'équipe</h1>
+                <div class="analysis-tabs">
+                    <button class="tab-btn active" data-tab="individual">Analyse individuelle</button>
+                    <button class="tab-btn" data-tab="team">Analyse d'équipe</button>
+                    <button class="tab-btn" data-tab="suggestions">Suggestions</button>
+                </div>
+                
+                <div id="individual-analysis" class="tab-content active">
+                    <div class="player-selector">
+                        <label for="analysis-player-select">Sélectionner un joueur:</label>
+                        <select id="analysis-player-select">
+                            <option value="">Choisir un joueur...</option>
+                        </select>
+                    </div>
+                    <div id="individual-charts" class="charts-container">
+                        <div class="chart-wrapper">
+                            <h3>Compétences techniques</h3>
+                            <canvas id="technical-chart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3>Capacités physiques</h3>
+                            <canvas id="physical-chart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3>Intelligence tactique</h3>
+                            <canvas id="tactical-chart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3>Aspect mental</h3>
+                            <canvas id="mental-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="team-analysis" class="tab-content">
+                    <div class="team-stats">
+                        <div class="stat-group">
+                            <h3>Moyennes d'équipe</h3>
+                            <div class="avg-stats">
+                                <div class="avg-stat">
+                                    <span class="stat-label">Technique:</span>
+                                    <span id="team-technical-avg" class="stat-value">0</span>
+                                </div>
+                                <div class="avg-stat">
+                                    <span class="stat-label">Physique:</span>
+                                    <span id="team-physical-avg" class="stat-value">0</span>
+                                </div>
+                                <div class="avg-stat">
+                                    <span class="stat-label">Tactique:</span>
+                                    <span id="team-tactical-avg" class="stat-value">0</span>
+                                </div>
+                                <div class="avg-stat">
+                                    <span class="stat-label">Mental:</span>
+                                    <span id="team-mental-avg" class="stat-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-charts">
+                        <div class="chart-wrapper">
+                            <h3>Répartition des compétences</h3>
+                            <canvas id="team-distribution-chart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <h3>Profil de l'équipe</h3>
+                            <canvas id="team-radar-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="suggestions-analysis" class="tab-content">
+                    <div class="suggestions-container">
+                        <h3>Suggestions d'amélioration</h3>
+                        <div id="team-suggestions" class="suggestions-list">
+                            <!-- Les suggestions seront générées dynamiquement -->
+                        </div>
+                        <h3>Style de jeu recommandé</h3>
+                        <div id="recommended-style" class="recommended-style">
+                            <!-- Le style recommandé sera affiché ici -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plans d'entraînement -->
+        <section id="training-plans-view" class="view">
+            <div class="training-plans-container">
+                <h1>Plans d'entraînement</h1>
+                <div class="plans-controls">
+                    <button id="generate-plan-btn" class="btn btn-primary"><i class="fas fa-magic"></i> Générer plan automatique</button>
+                    <button id="create-custom-plan-btn" class="btn btn-secondary"><i class="fas fa-edit"></i> Créer plan personnalisé</button>
+                </div>
+                <div class="plan-type-selector">
+                    <label for="plan-type">Type de plan:</label>
+                    <select id="plan-type">
+                        <option value="weekly">Hebdomadaire</option>
+                        <option value="monthly">Mensuel</option>
+                        <option value="physical">Préparation physique</option>
+                    </select>
+                </div>
+                <div id="training-plan-content" class="plan-content">
+                    <!-- Le contenu du plan sera généré ici -->
+                </div>
+                <div class="plan-actions">
+                    <button id="export-pdf-btn" class="btn btn-success"><i class="fas fa-file-pdf"></i> Exporter en PDF</button>
+                    <button id="save-plan-btn" class="btn btn-primary"><i class="fas fa-save"></i> Sauvegarder</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modales -->
+    
+    <!-- Modale d'ajout d'événement -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ajouter un événement</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="event-form">
+                <div class="form-group">
+                    <label for="event-title">Titre</label>
+                    <input type="text" id="event-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-type">Type</label>
+                    <select id="event-type" required>
+                        <option value="">Sélectionner...</option>
+                        <option value="training">Entraînement</option>
+                        <option value="match">Match</option>
+                        <option value="meeting">Réunion</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-date">Date</label>
+                        <input type="date" id="event-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-time">Heure</label>
+                        <input type="time" id="event-time" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="event-duration">Durée (minutes)</label>
+                    <input type="number" id="event-duration" min="15" max="300" value="90">
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description</label>
+                    <textarea id="event-description" rows="3"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-event">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modale d'ajout/modification de joueur -->
+    <div id="player-modal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="player-modal-title">Ajouter un joueur</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="player-form">
+                <div class="player-form-tabs">
+                    <button type="button" class="tab-btn active" data-tab="basic">Informations de base</button>
+                    <button type="button" class="tab-btn" data-tab="skills">Compétences</button>
+                </div>
+                
+                <div id="basic-info" class="tab-content active">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="player-name">Nom complet</label>
+                            <input type="text" id="player-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="player-age">Âge</label>
+                            <input type="number" id="player-age" min="14" max="45" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="player-position">Position</label>
+                            <select id="player-position" required>
+                                <option value="">Sélectionner...</option>
+                                <option value="GK">Gardien de but</option>
+                                <option value="DEF">Défenseur</option>
+                                <option value="MID">Milieu de terrain</option>
+                                <option value="ATT">Attaquant</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="player-number">Numéro de maillot</label>
+                            <input type="number" id="player-number" min="1" max="99">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="skills-info" class="tab-content">
+                    <div class="skills-section">
+                        <h4>Compétences techniques</h4>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <label for="skill-passing">Passes</label>
+                                <input type="range" id="skill-passing" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-receiving">Réception</label>
+                                <input type="range" id="skill-receiving" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-dribbling">Dribble</label>
+                                <input type="range" id="skill-dribbling" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-shooting">Tir</label>
+                                <input type="range" id="skill-shooting" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-heading">Jeu de tête</label>
+                                <input type="range" id="skill-heading" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-ball-control">Contrôle de balle</label>
+                                <input type="range" id="skill-ball-control" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-section">
+                        <h4>Capacités physiques</h4>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <label for="skill-endurance">Endurance</label>
+                                <input type="range" id="skill-endurance" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-fitness">Condition physique</label>
+                                <input type="range" id="skill-fitness" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-speed">Vitesse</label>
+                                <input type="range" id="skill-speed" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-strength">Force</label>
+                                <input type="range" id="skill-strength" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-agility">Agilité</label>
+                                <input type="range" id="skill-agility" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-balance">Équilibre</label>
+                                <input type="range" id="skill-balance" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-section">
+                        <h4>Intelligence tactique</h4>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <label for="skill-positioning">Positionnement</label>
+                                <input type="range" id="skill-positioning" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-game-reading">Lecture du jeu</label>
+                                <input type="range" id="skill-game-reading" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-decision-making">Prise de décision</label>
+                                <input type="range" id="skill-decision-making" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-teamwork">Jeu d'équipe</label>
+                                <input type="range" id="skill-teamwork" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-section">
+                        <h4>Aspect mental</h4>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <label for="skill-concentration">Concentration</label>
+                                <input type="range" id="skill-concentration" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-confidence">Confiance</label>
+                                <input type="range" id="skill-confidence" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-leadership">Leadership</label>
+                                <input type="range" id="skill-leadership" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                            <div class="skill-item">
+                                <label for="skill-motivation">Motivation</label>
+                                <input type="range" id="skill-motivation" min="1" max="20" value="10">
+                                <span class="skill-value">10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-player">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Messages de notification -->
+    <div id="notification" class="notification">
+        <span id="notification-message"></span>
+        <button id="notification-close">&times;</button>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/demo_data_loader.js"></script>
+    <script src="js/load_all_demo_data.js"></script>
+</body>
+</html>
+
