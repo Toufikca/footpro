@@ -1,606 +1,1371 @@
-// Traductions pour le système de gestion d'entraînement sportif
-const translations = {
-    ar: {
-        pageTitle: "نظام إدارة التدريب الرياضي",
-        appTitle: "نظام إدارة التدريب",
-        home: "الرئيسية",
-        login: "تسجيل الدخول",
-        about: "معلومات حول الموقع",
-        contact: "اتصل بنا",
-        userIdDisplay: "معرف المستخدم",
-        userIdNotAvailable: "معرف المستخدم: غير متاح",
-        welcomeTitle: "مرحبًا بك في نظام إدارة التدريب الرياضي",
-        welcomeText: "أدوات متقدمة للمدربين لإنشاء برامج تدريبية مخصصة في كرة القدم.",
-        getStarted: "ابدأ الآن",
-        authModalTitle: "تسجيل الدخول / التسجيل",
-        emailLabel: "البريد الإلكتروني:",
-        emailPlaceholder: "أدخل بريدك الإلكتروني",
-        passwordLabel: "كلمة المرور:",
-        passwordPlaceholder: "أدخل كلمة المرور",
-        loginButton: "تسجيل الدخول",
-        registerButton: "تسجيل جديد",
-        logoutButton: "تسجيل الخروج",
-        loginSuccess: "تم تسجيل الدخول بنجاح!",
-        registerSuccess: "تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول.",
-        logoutSuccess: "تم تسجيل الخروج بنجاح.",
-        loginError: "خطأ في تسجيل الدخول:",
-        registerError: "خطأ في التسجيل:",
-        logoutError: "خطأ في تسجيل الخروج:",
-        coachProfileTitle: "إدارة ملف المدرب",
-        nameLabel: "الاسم:",
-        namePlaceholder: "اسم المدرب",
-        ageLabel: "العمر:",
-        agePlaceholder: "عمر المدرب",
-        nationalityLabel: "الجنسية:",
-        nationalityPlaceholder: "جنسية المدرب",
-        phoneLabel: "رقم الهاتف:",
-        phonePlaceholder: "رقم هاتف المدرب",
-        coachLevelLabel: "المستوى التدريبي:",
-        selectLevel: "اختر المستوى",
-        saveCoachProfile: "حفظ بيانات المدرب",
-        saveCoachProfileSuccess: "تم حفظ بيانات المدرب بنجاح!",
-        saveCoachProfileError: "حدث خطأ أثناء حفظ بيانات المدرب.",
-        loginRequired: "يرجى تسجيل الدخول أولاً لحفظ البيانات.",
-        ageGroupTitle: "اختيار الفئة العمرية",
-        u15: "أقل من 15",
-        u17: "أقل من 17",
-        u19: "أقل من 19",
-        women: "الفريق النسائي",
-        seniors: "الأكابر",
-        ageGroupInstructionsTitle: "تعليمات الفئة العمرية:",
-        ageGroupU15Instruction: "تعليمات خاصة بالفئة العمرية أقل من 15 سنة: التركيز على الأساسيات وتطوير المهارات الفردية.",
-        ageGroupU17Instruction: "تعليمات خاصة بالفئة العمرية أقل من 17 سنة: تطوير الجوانب التكتيكية والفهم الجماعي.",
-        ageGroupU19Instruction: "تعليمات خاصة بالفئة العمرية أقل من 19 سنة: التركيز على اللياقة البدنية والتحمل، وصقل المهارات المتقدمة.",
-        ageGroupWomenInstruction: "تعليمات خاصة بالفريق النسائي: برامج تدريبية مصممة لتناسب الاحتياجات البدنية والتكتيكية للاعبات.",
-        ageGroupSeniorsInstruction: "تعليمات خاصة بفئة الأكابر: برامج تدريبية عالية المستوى، تركز على الأداء التنافسي والتكتيكات المعقدة.",
-        saveAgeGroup: "حفظ الفئة العمرية",
-        saveAgeGroupSuccess: "تم حفظ الفئة العمرية:",
-        saveAgeGroupError: "حدث خطأ أثناء حفظ الفئة العمرية.",
-        selectAgeGroupFirst: "يرجى اختيار فئة عمرية أولاً.",
-        scheduleManagementTitle: "إدارة جدولة التدريب والمباريات",
-        selectDay: "اختر اليوم",
-        trainingTimePlaceholder: "وقت التدريب",
-        matchTimePlaceholder: "وقت المباراة",
-        addDaySchedule: "إضافة يوم للجدول",
-        saveSchedule: "حفظ الجدول",
-        saveScheduleSuccess: "تم حفظ الجدول بنجاح!",
-        saveScheduleError: "حدث خطأ أثناء حفظ الجدول.",
-        playingPhilosophyTitle: "اختيار فلسفة اللعب",
-        offensive: "هجومية",
-        defensive: "دفاعية",
-        possession: "الاستحواذ",
-        formationbased: "حسب التشكيلة",
-        selectedPhilosophy: "فلسفة اللعب المختارة:",
-        playerManagementTitle: "إدارة اللاعبين",
-        playerNameLabel: "اسم اللاعب:",
-        playerNamePlaceholder: "اسم اللاعب",
-        skillCharacteristics: "الخصائص المهارية",
-        passing: "التمرير:",
-        receiving: "الاستقبال:",
-        dribblingrun: "الجري بالكرة:",
-        dribblingskill: "المراوغة:",
-        heading: "الضرب بالرأس:",
-        shooting: "التسديد:",
-        longpassing: "التمريرات الطويلة الدقيقة:",
-        ballcontrol: "التحكم بالكرة:",
-        twofooted: "اللعب بالرجلين:",
-        finishingpressure: "التهديف في المساحات الضيقة:",
-        physicalAbilities: "الخصائص البدنية",
-        stamina: "التحمل البدني:",
-        fitness: "اللياقة البدنية:",
-        physique: "البنية الجسمانية:",
-        speed: "السرعة:",
-        strength: "القوة البدنية:",
-        balanceagility: "التوازن والرشاقة:",
-        tacticalUnderstanding: "الخصائص التكتيكية",
-        gameintelligence: "الذكاء بالكرة أو بدونها:",
-        coachinstructions: "تطبيق تعليمات المدرب:",
-        defensiveaggression: "الشراسة الدفاعية:",
-        offensivecontribution: "الغزارة الهجومية:",
-        positioning: "التمركز الصحيح:",
-        readinggame: "قراءة اللعب:",
-        teamworkpressing: "التنظيم والضغط الجماعي:",
-        mentalPsychologicalTraits: "الخصائص الذهنية والنفسية",
-        mentaltoughness: "الجانب الذهني:",
-        psychologicalstability: "الجانب النفسي:",
-        concentration: "التركيز:",
-        selfconfidence: "الثقة بالنفس:",
-        leadership: "القيادة:",
-        handlingpressure: "القدرة على التعامل مع الضغط:",
-        motivationcompetitiveness: "الحافز والرغبة في الفوز:",
-        addEditPlayer: "إضافة / تعديل لاعب",
-        addPlayerSuccess: "تم إضافة اللاعب بنجاح!",
-        editPlayerSuccess: "تم تعديل بيانات اللاعب بنجاح!",
-        savePlayerError: "حدث خطأ أثناء حفظ بيانات اللاعب.",
-        playerNameRequired: "يرجى إدخال اسم اللاعب.",
-        playersList: "قائمة اللاعبين",
-        tablePlayerName: "الاسم",
-        tableSkillAvg: "المهارة (متوسط)",
-        tablePhysicalAvg: "البدنية (متوسط)",
-        tableTacticalAvg: "التكتيكية (متوسط)",
-        tableMentalAvg: "الذهنية (متوسط)",
-        tableActions: "الإجراءات",
-        edit: "تعديل",
-        delete: "حذف",
-        confirmDeletePlayer: "هل أنت متأكد أنك تريد حذف هذا اللاعب؟",
-        deletePlayerSuccess: "تم حذف اللاعب بنجاح!",
-        deletePlayerError: "حدث خطأ أثناء حذف اللاعب.",
-        teamAnalysisTitle: "تحليل الفريق وإنشاء الخطط",
-        analyzeTeam: "تحليل الفريق",
-        noPlayersToAnalyze: "لا يوجد لاعبون لتحليلهم. يرجى إضافة لاعبين أولاً.",
-        individualPlayerAnalysis: "تحليل اللاعبين الفردي",
-        playerType: "النوع:",
-        skillAvg: "متوسط المهارة:",
-        physicalAvg: "متوسط البدنية:",
-        tacticalAvg: "متوسط التكتيكية:",
-        mentalAvg: "متوسط الذهنية:",
-        playerTypeSkillful: "مهاري",
-        playerTypePhysical: "بدني",
-        playerTypeTactical: "تكتيكي",
-        playerTypeMental: "ذهني",
-        playerTypeGeneral: "عام",
-        teamCollectiveAnalysis: "تحليل الفريق الجماعي",
-        categoryAverages: "متوسطات الفئات",
-        teamOverallAverages: "متوسطات الخصائص الكلية",
-        categorySkill: "المهارية",
-        categoryPhysical: "البدنية",
-        categoryTactical: "التكتيكية",
-        categoryMental: "الذهنية",
-        overallTeamAverage: "متوسط التقييم الكلي للفريق:",
-        suggestedFormations: "التشكيلات المقترحة ونقاط القوة والضعف",
-        noFormationSuggestion: "لا توجد تشكيلة مقترحة حاليًا.",
-        noStrengthsWeaknesses: "لا توجد نقاط قوة وضعف محددة حاليًا.",
-        formationOffensive: "بناءً على فلسفتك الهجومية ومتوسط المهارات العالي، قد تكون تشكيلة 4-3-3 أو 4-2-3-1 مناسبة.",
-        strengthsOffensive: "نقاط القوة: القدرة على بناء اللعب الهجومي، المهارات الفردية العالية، والضغط المتقدم.",
-        weaknessesOffensive: "نقاط الضعف المحتملة: قد تكون هناك مساحات خلف خط الدفاع، والحاجة إلى توازن دفاعي.",
-        formationDefensive: "بناءً على فلسفتك الدفاعية ومتوسط القدرات البدنية الجيدة، قد تكون تشكيلة 4-4-2 أو 5-3-2 مناسبة.",
-        strengthsDefensive: "نقاط القوة: التنظيم الدفاعي القوي، القدرة على التحمل البدني، والصلابة الدفاعية.",
-        weaknessesDefensive: "نقاط الضعف المحتملة: قد تواجه صعوبة في الانتقال للهجوم السريع، والحاجة إلى لاعبين مبدعين في الأمام.",
-        formationPossession: "بناءً على فلسفتك الاستحواذية ومتوسط الفهم التكتيكي الجيد، قد تكون تشكيلة 4-3-3 أو 4-1-4-1 مناسبة.",
-        strengthsPossession: "نقاط القوة: التحكم بالكرة، بناء اللعب من الخلف، والقدرة على فرض الإيقاع.",
-        weaknessesPossession: "نقاط الضعف المحتملة: قد تكون عرضة للهجمات المرتدة السريعة، والحاجة إلى تركيز عالٍ طوال المباراة.",
-        formationFormationBased: "اخترت فلسفة تعتمد على التشكيلة. يرجى تحديد التشكيلة المفضلة لديك لتحليل أعمق.",
-        strengthsFormationBased: "نقاط القوة: المرونة التكتيكية والقدرة على التكيف مع الخصوم.",
-        weaknessesFormationBased: "نقاط الضعف المحتملة: قد يتطلب الأمر وقتًا أطول للاعبين للتكيف مع التغييرات المتكررة في التشكيلة.",
-        formationGeneral: "لا توجد تشكيلة مقترحة محددة حاليًا. يمكننا تحليل أعمق بعد اختيار فلسفة اللعب وتوفر بيانات كافية عن اللاعبين.",
-        strengthsGeneral: "نقاط القوة: تعتمد على متوسط قدرات الفريق.",
-        weaknessesGeneral: "نقاط الضعف: تعتمد على متوسط قدرات الفريق.",
-        programGenerationTitle: "إنشاء البرامج التدريبية",
-        annualProgram: "برنامج سنوي",
-        monthlyProgram: "برنامج شهري",
-        weeklyProgram: "برنامج أسبوعي",
-        physicalProgram: "برنامج تحضير بدني",
-        programOutputPlaceholder: "سيظهر البرنامج التدريبي الذي تم إنشاؤه هنا.",
-        generatingProgram: "جاري إنشاء البرنامج...",
-        programGenerationError: "تعذر إنشاء البرنامج التدريبي. يرجى المحاولة مرة أخرى.",
-        apiConnectionError: "حدث خطأ أثناء الاتصال بالنموذج:",
-        printProgram: "طباعة البرنامج (PDF)",
-        printPdfNotAvailable: "وظيفة طباعة PDF قيد التطوير. يمكنك نسخ النص يدويًا.",
-        aboutTitle: "معلومات حول الموقع",
-        aboutText1: "هذا الموقع هو نظام شامل لإدارة التدريب الرياضي في كرة القدم، مصمم خصيصًا للمدربين. يوفر أدوات متقدمة لإنشاء برامج تدريبية مخصصة تتناسب مع احتياجات الفريق وأسلوب التدريب المفضل. هدفنا هو تبسيط عملية التخطيط والتحليل، ومساعدة المدربين على تحقيق أقصى إمكانات لاعبيهم وفرقهم.",
-        aboutText2: "يشمل الموقع ميزات مثل إدارة ملف المدرب، واختيار الفئات العمرية، وجدولة التدريبات والمباريات، وتحديد فلسفة اللعب، وإدارة شاملة للاعبين مع تقييمات تفصيلية للمهارات البدنية، التكتيكية، والذهنية. كما يوفر تحليلاً متقدمًا للفريق واقتراحات للخطط، بالإضافة إلى إمكانية إنشاء برامج تدريبية متنوعة وطباعتها.",
-        contactTitle: "اتصل بنا",
-        yourNameLabel: "اسمك:",
-        yourNamePlaceholder: "اسمك الكامل",
-        yourEmailLabel: "بريدك الإلكتروني:",
-        yourEmailPlaceholder: "example@example.com",
-        yourMessageLabel: "رسالتك:",
-        yourMessagePlaceholder: "اكتب رسالتك هنا...",
-        sendMessage: "إرسال الرسالة",
-        footerText: "© 2025 نظام إدارة التدريب الرياضي. جميع الحقوق محفوظة.",
-        sunday: "الأحد",
-        monday: "الاثنين",
-        tuesday: "الثلاثاء",
-        wednesday: "الأربعاء",
-        thursday: "الخميس",
-        friday: "الجمعة",
-        saturday: "السبت",
-        programFocusAnnual: "تخطيط شامل للموسم، تقسيم الفترات (تحضير، منافسة، انتقالية)، والأهداف الرئيسية لكل فترة.",
-        programFocusMonthly: "أهداف تدريبية محددة للشهر، تمارين مفصلة، وتقييم التقدم.",
-        programFocusWeekly: "جدول يومي للتدريبات، تمارين محددة، وتوزيع الأحمال التدريبية.",
-        programFocusPhysical: "برنامج تحضير بدني شامل يركز على تطوير القوة، السرعة، التحمل، والمرونة."
-    },
-    
-    en: {
-        pageTitle: "Sports Training Management System",
-        appTitle: "Training Management System",
-        home: "Home",
-        login: "Login",
-        about: "About",
-        contact: "Contact Us",
-        userIdDisplay: "User ID",
-        userIdNotAvailable: "User ID: Not Available",
-        welcomeTitle: "Welcome to the Sports Training Management System",
-        welcomeText: "Advanced tools for coaches to create customized training programs in football.",
-        getStarted: "Get Started",
-        authModalTitle: "Login / Register",
-        emailLabel: "Email:",
-        emailPlaceholder: "Enter your email",
-        passwordLabel: "Password:",
-        passwordPlaceholder: "Enter your password",
-        loginButton: "Login",
-        registerButton: "Register",
-        logoutButton: "Logout",
-        loginSuccess: "Login successful!",
-        registerSuccess: "Registration successful! You can now log in.",
-        logoutSuccess: "Logout successful.",
-        loginError: "Login error:",
-        registerError: "Registration error:",
-        logoutError: "Logout error:",
-        coachProfileTitle: "Coach Profile Management",
-        nameLabel: "Name:",
-        namePlaceholder: "Coach name",
-        ageLabel: "Age:",
-        agePlaceholder: "Coach age",
-        nationalityLabel: "Nationality:",
-        nationalityPlaceholder: "Coach nationality",
-        phoneLabel: "Phone Number:",
-        phonePlaceholder: "Coach phone number",
-        coachLevelLabel: "Coaching Level:",
-        selectLevel: "Select Level",
-        saveCoachProfile: "Save Coach Profile",
-        saveCoachProfileSuccess: "Coach profile saved successfully!",
-        saveCoachProfileError: "Error occurred while saving coach profile.",
-        loginRequired: "Please log in first to save data.",
-        ageGroupTitle: "Age Group Selection",
-        u15: "Under 15",
-        u17: "Under 17",
-        u19: "Under 19",
-        women: "Women's Team",
-        seniors: "Seniors",
-        ageGroupInstructionsTitle: "Age Group Instructions:",
-        ageGroupU15Instruction: "Instructions for Under 15 age group: Focus on fundamentals and developing individual skills.",
-        ageGroupU17Instruction: "Instructions for Under 17 age group: Develop tactical aspects and team understanding.",
-        ageGroupU19Instruction: "Instructions for Under 19 age group: Focus on physical fitness and endurance, refining advanced skills.",
-        ageGroupWomenInstruction: "Instructions for Women's Team: Training programs designed to suit the physical and tactical needs of female players.",
-        ageGroupSeniorsInstruction: "Instructions for Seniors: High-level training programs focusing on competitive performance and complex tactics.",
-        saveAgeGroup: "Save Age Group",
-        saveAgeGroupSuccess: "Age group saved:",
-        saveAgeGroupError: "Error occurred while saving age group.",
-        selectAgeGroupFirst: "Please select an age group first.",
-        scheduleManagementTitle: "Training and Match Schedule Management",
-        selectDay: "Select Day",
-        trainingTimePlaceholder: "Training time",
-        matchTimePlaceholder: "Match time",
-        addDaySchedule: "Add Day to Schedule",
-        saveSchedule: "Save Schedule",
-        saveScheduleSuccess: "Schedule saved successfully!",
-        saveScheduleError: "Error occurred while saving schedule.",
-        playingPhilosophyTitle: "Playing Philosophy Selection",
-        offensive: "Offensive",
-        defensive: "Defensive",
-        possession: "Possession",
-        formationbased: "Formation-based",
-        selectedPhilosophy: "Selected Playing Philosophy:",
-        playerManagementTitle: "Player Management",
-        playerNameLabel: "Player Name:",
-        playerNamePlaceholder: "Player name",
-        skillCharacteristics: "Skill Characteristics",
-        passing: "Passing:",
-        receiving: "Receiving:",
-        dribblingrun: "Dribbling Run:",
-        dribblingskill: "Dribbling Skill:",
-        heading: "Heading:",
-        shooting: "Shooting:",
-        longpassing: "Long Passing:",
-        ballcontrol: "Ball Control:",
-        twofooted: "Two-footed:",
-        finishingpressure: "Finishing Under Pressure:",
-        physicalAbilities: "Physical Abilities",
-        stamina: "Stamina:",
-        fitness: "Fitness:",
-        physique: "Physique:",
-        speed: "Speed:",
-        strength: "Strength:",
-        balanceagility: "Balance & Agility:",
-        tacticalUnderstanding: "Tactical Understanding",
-        gameintelligence: "Game Intelligence:",
-        coachinstructions: "Following Coach Instructions:",
-        defensiveaggression: "Defensive Aggression:",
-        offensivecontribution: "Offensive Contribution:",
-        positioning: "Positioning:",
-        readinggame: "Reading the Game:",
-        teamworkpressing: "Teamwork & Pressing:",
-        mentalPsychologicalTraits: "Mental & Psychological Traits",
-        mentaltoughness: "Mental Toughness:",
-        psychologicalstability: "Psychological Stability:",
-        concentration: "Concentration:",
-        selfconfidence: "Self-confidence:",
-        leadership: "Leadership:",
-        handlingpressure: "Handling Pressure:",
-        motivationcompetitiveness: "Motivation & Competitiveness:",
-        addEditPlayer: "Add / Edit Player",
-        addPlayerSuccess: "Player added successfully!",
-        editPlayerSuccess: "Player data updated successfully!",
-        savePlayerError: "Error occurred while saving player data.",
-        playerNameRequired: "Please enter player name.",
-        playersList: "Players List",
-        tablePlayerName: "Name",
-        tableSkillAvg: "Skill (Average)",
-        tablePhysicalAvg: "Physical (Average)",
-        tableTacticalAvg: "Tactical (Average)",
-        tableMentalAvg: "Mental (Average)",
-        tableActions: "Actions",
-        edit: "Edit",
-        delete: "Delete",
-        confirmDeletePlayer: "Are you sure you want to delete this player?",
-        deletePlayerSuccess: "Player deleted successfully!",
-        deletePlayerError: "Error occurred while deleting player.",
-        teamAnalysisTitle: "Team Analysis and Plan Creation",
-        analyzeTeam: "Analyze Team",
-        noPlayersToAnalyze: "No players to analyze. Please add players first.",
-        individualPlayerAnalysis: "Individual Player Analysis",
-        playerType: "Type:",
-        skillAvg: "Skill Average:",
-        physicalAvg: "Physical Average:",
-        tacticalAvg: "Tactical Average:",
-        mentalAvg: "Mental Average:",
-        playerTypeSkillful: "Skillful",
-        playerTypePhysical: "Physical",
-        playerTypeTactical: "Tactical",
-        playerTypeMental: "Mental",
-        playerTypeGeneral: "General",
-        teamCollectiveAnalysis: "Team Collective Analysis",
-        categoryAverages: "Category Averages",
-        teamOverallAverages: "Team Overall Averages",
-        categorySkill: "Skill",
-        categoryPhysical: "Physical",
-        categoryTactical: "Tactical",
-        categoryMental: "Mental",
-        overallTeamAverage: "Overall Team Average:",
-        suggestedFormations: "Suggested Formations and Strengths/Weaknesses",
-        noFormationSuggestion: "No formation suggestion currently available.",
-        noStrengthsWeaknesses: "No specific strengths and weaknesses currently available.",
-        formationOffensive: "Based on your offensive philosophy and high skill average, a 4-3-3 or 4-2-3-1 formation might be suitable.",
-        strengthsOffensive: "Strengths: Ability to build offensive play, high individual skills, and advanced pressing.",
-        weaknessesOffensive: "Potential weaknesses: There might be spaces behind the defense line, need for defensive balance.",
-        formationDefensive: "Based on your defensive philosophy and good physical abilities average, a 4-4-2 or 5-3-2 formation might be suitable.",
-        strengthsDefensive: "Strengths: Strong defensive organization, physical endurance ability, and defensive solidity.",
-        weaknessesDefensive: "Potential weaknesses: May face difficulty in quick transition to attack, need for creative players upfront.",
-        formationPossession: "Based on your possession philosophy and good tactical understanding average, a 4-3-3 or 4-1-4-1 formation might be suitable.",
-        strengthsPossession: "Strengths: Ball control, building play from the back, and ability to dictate tempo.",
-        weaknessesPossession: "Potential weaknesses: May be vulnerable to quick counter-attacks, need for high concentration throughout the match.",
-        formationFormationBased: "You chose a formation-based philosophy. Please specify your preferred formation for deeper analysis.",
-        strengthsFormationBased: "Strengths: Tactical flexibility and ability to adapt to opponents.",
-        weaknessesFormationBased: "Potential weaknesses: May require more time for players to adapt to frequent formation changes.",
-        formationGeneral: "No specific formation suggestion currently available. We can analyze deeper after selecting playing philosophy and having sufficient player data.",
-        strengthsGeneral: "Strengths: Depend on team's average abilities.",
-        weaknessesGeneral: "Weaknesses: Depend on team's average abilities.",
-        programGenerationTitle: "Training Program Generation",
-        annualProgram: "Annual Program",
-        monthlyProgram: "Monthly Program",
-        weeklyProgram: "Weekly Program",
-        physicalProgram: "Physical Preparation Program",
-        programOutputPlaceholder: "The generated training program will appear here.",
-        generatingProgram: "Generating program...",
-        programGenerationError: "Failed to generate training program. Please try again.",
-        apiConnectionError: "Error occurred while connecting to the model:",
-        printProgram: "Print Program (PDF)",
-        printPdfNotAvailable: "PDF printing function is under development. You can copy the text manually.",
-        aboutTitle: "About the Website",
-        aboutText1: "This website is a comprehensive sports training management system for football, designed specifically for coaches. It provides advanced tools for creating customized training programs that suit team needs and preferred training style. Our goal is to simplify the planning and analysis process, helping coaches achieve maximum potential for their players and teams.",
-        aboutText2: "The website includes features such as coach profile management, age group selection, training and match scheduling, playing philosophy determination, and comprehensive player management with detailed assessments of physical, tactical, and mental skills. It also provides advanced team analysis and plan suggestions, plus the ability to generate various training programs and print them.",
-        contactTitle: "Contact Us",
-        yourNameLabel: "Your Name:",
-        yourNamePlaceholder: "Your full name",
-        yourEmailLabel: "Your Email:",
-        yourEmailPlaceholder: "example@example.com",
-        yourMessageLabel: "Your Message:",
-        yourMessagePlaceholder: "Write your message here...",
-        sendMessage: "Send Message",
-        footerText: "© 2025 Sports Training Management System. All rights reserved.",
-        sunday: "Sunday",
-        monday: "Monday",
-        tuesday: "Tuesday",
-        wednesday: "Wednesday",
-        thursday: "Thursday",
-        friday: "Friday",
-        saturday: "Saturday",
-        programFocusAnnual: "Comprehensive season planning, period division (preparation, competition, transition), and main objectives for each period.",
-        programFocusMonthly: "Specific training objectives for the month, detailed exercises, and progress evaluation.",
-        programFocusWeekly: "Daily training schedule, specific exercises, and training load distribution.",
-        programFocusPhysical: "Comprehensive physical preparation program focusing on developing strength, speed, endurance, and flexibility."
-    },
-    
-    fr: {
-        pageTitle: "Système de Gestion d'Entraînement Sportif",
-        appTitle: "Système de Gestion d'Entraînement",
-        home: "Accueil",
-        login: "Connexion",
-        about: "À propos",
-        contact: "Contactez-nous",
-        userIdDisplay: "ID Utilisateur",
-        userIdNotAvailable: "ID Utilisateur : Non disponible",
-        welcomeTitle: "Bienvenue dans le Système de Gestion d'Entraînement Sportif",
-        welcomeText: "Outils avancés pour les entraîneurs pour créer des programmes d'entraînement personnalisés en football.",
-        getStarted: "Commencer",
-        authModalTitle: "Connexion / Inscription",
-        emailLabel: "Email :",
-        emailPlaceholder: "Entrez votre email",
-        passwordLabel: "Mot de passe :",
-        passwordPlaceholder: "Entrez votre mot de passe",
-        loginButton: "Se connecter",
-        registerButton: "S'inscrire",
-        logoutButton: "Se déconnecter",
-        loginSuccess: "Connexion réussie !",
-        registerSuccess: "Inscription réussie ! Vous pouvez maintenant vous connecter.",
-        logoutSuccess: "Déconnexion réussie.",
-        loginError: "Erreur de connexion :",
-        registerError: "Erreur d'inscription :",
-        logoutError: "Erreur de déconnexion :",
-        coachProfileTitle: "Gestion du Profil d'Entraîneur",
-        nameLabel: "Nom :",
-        namePlaceholder: "Nom de l'entraîneur",
-        ageLabel: "Âge :",
-        agePlaceholder: "Âge de l'entraîneur",
-        nationalityLabel: "Nationalité :",
-        nationalityPlaceholder: "Nationalité de l'entraîneur",
-        phoneLabel: "Numéro de téléphone :",
-        phonePlaceholder: "Numéro de téléphone de l'entraîneur",
-        coachLevelLabel: "Niveau d'entraînement :",
-        selectLevel: "Sélectionner le niveau",
-        saveCoachProfile: "Sauvegarder le profil d'entraîneur",
-        saveCoachProfileSuccess: "Profil d'entraîneur sauvegardé avec succès !",
-        saveCoachProfileError: "Erreur lors de la sauvegarde du profil d'entraîneur.",
-        loginRequired: "Veuillez vous connecter d'abord pour sauvegarder les données.",
-        ageGroupTitle: "Sélection de Groupe d'Âge",
-        u15: "Moins de 15 ans",
-        u17: "Moins de 17 ans",
-        u19: "Moins de 19 ans",
-        women: "Équipe Féminine",
-        seniors: "Seniors",
-        ageGroupInstructionsTitle: "Instructions du Groupe d'Âge :",
-        ageGroupU15Instruction: "Instructions pour le groupe moins de 15 ans : Se concentrer sur les fondamentaux et développer les compétences individuelles.",
-        ageGroupU17Instruction: "Instructions pour le groupe moins de 17 ans : Développer les aspects tactiques et la compréhension d'équipe.",
-        ageGroupU19Instruction: "Instructions pour le groupe moins de 19 ans : Se concentrer sur la condition physique et l'endurance, affiner les compétences avancées.",
-        ageGroupWomenInstruction: "Instructions pour l'équipe féminine : Programmes d'entraînement conçus pour répondre aux besoins physiques et tactiques des joueuses.",
-        ageGroupSeniorsInstruction: "Instructions pour les seniors : Programmes d'entraînement de haut niveau axés sur la performance compétitive et les tactiques complexes.",
-        saveAgeGroup: "Sauvegarder le groupe d'âge",
-        saveAgeGroupSuccess: "Groupe d'âge sauvegardé :",
-        saveAgeGroupError: "Erreur lors de la sauvegarde du groupe d'âge.",
-        selectAgeGroupFirst: "Veuillez d'abord sélectionner un groupe d'âge.",
-        scheduleManagementTitle: "Gestion des Horaires d'Entraînement et de Match",
-        selectDay: "Sélectionner le jour",
-        trainingTimePlaceholder: "Heure d'entraînement",
-        matchTimePlaceholder: "Heure de match",
-        addDaySchedule: "Ajouter un jour au planning",
-        saveSchedule: "Sauvegarder le planning",
-        saveScheduleSuccess: "Planning sauvegardé avec succès !",
-        saveScheduleError: "Erreur lors de la sauvegarde du planning.",
-        playingPhilosophyTitle: "Sélection de Philosophie de Jeu",
-        offensive: "Offensive",
-        defensive: "Défensive",
-        possession: "Possession",
-        formationbased: "Basée sur la formation",
-        selectedPhilosophy: "Philosophie de jeu sélectionnée :",
-        playerManagementTitle: "Gestion des Joueurs",
-        playerNameLabel: "Nom du joueur :",
-        playerNamePlaceholder: "Nom du joueur",
-        skillCharacteristics: "Caractéristiques Techniques",
-        passing: "Passes :",
-        receiving: "Réception :",
-        dribblingrun: "Course avec ballon :",
-        dribblingskill: "Dribble :",
-        heading: "Jeu de tête :",
-        shooting: "Tir :",
-        longpassing: "Passes longues :",
-        ballcontrol: "Contrôle de balle :",
-        twofooted: "Ambidextre :",
-        finishingpressure: "Finition sous pression :",
-        physicalAbilities: "Capacités Physiques",
-        stamina: "Endurance :",
-        fitness: "Condition physique :",
-        physique: "Physique :",
-        speed: "Vitesse :",
-        strength: "Force :",
-        balanceagility: "Équilibre et agilité :",
-        tacticalUnderstanding: "Compréhension Tactique",
-        gameintelligence: "Intelligence de jeu :",
-        coachinstructions: "Suivi des instructions :",
-        defensiveaggression: "Agressivité défensive :",
-        offensivecontribution: "Contribution offensive :",
-        positioning: "Positionnement :",
-        readinggame: "Lecture du jeu :",
-        teamworkpressing: "Travail d'équipe et pressing :",
-        mentalPsychologicalTraits: "Traits Mentaux et Psychologiques",
-        mentaltoughness: "Résistance mentale :",
-        psychologicalstability: "Stabilité psychologique :",
-        concentration: "Concentration :",
-        selfconfidence: "Confiance en soi :",
-        leadership: "Leadership :",
-        handlingpressure: "Gestion de la pression :",
-        motivationcompetitiveness: "Motivation et compétitivité :",
-        addEditPlayer: "Ajouter / Modifier Joueur",
-        addPlayerSuccess: "Joueur ajouté avec succès !",
-        editPlayerSuccess: "Données du joueur mises à jour avec succès !",
-        savePlayerError: "Erreur lors de la sauvegarde des données du joueur.",
-        playerNameRequired: "Veuillez entrer le nom du joueur.",
-        playersList: "Liste des Joueurs",
-        tablePlayerName: "Nom",
-        tableSkillAvg: "Technique (Moyenne)",
-        tablePhysicalAvg: "Physique (Moyenne)",
-        tableTacticalAvg: "Tactique (Moyenne)",
-        tableMentalAvg: "Mental (Moyenne)",
-        tableActions: "Actions",
-        edit: "Modifier",
-        delete: "Supprimer",
-        confirmDeletePlayer: "Êtes-vous sûr de vouloir supprimer ce joueur ?",
-        deletePlayerSuccess: "Joueur supprimé avec succès !",
-        deletePlayerError: "Erreur lors de la suppression du joueur.",
-        teamAnalysisTitle: "Analyse d'Équipe et Création de Plans",
-        analyzeTeam: "Analyser l'équipe",
-        noPlayersToAnalyze: "Aucun joueur à analyser. Veuillez d'abord ajouter des joueurs.",
-        individualPlayerAnalysis: "Analyse Individuelle des Joueurs",
-        playerType: "Type :",
-        skillAvg: "Moyenne technique :",
-        physicalAvg: "Moyenne physique :",
-        tacticalAvg: "Moyenne tactique :",
-        mentalAvg: "Moyenne mentale :",
-        playerTypeSkillful: "Technique",
-        playerTypePhysical: "Physique",
-        playerTypeTactical: "Tactique",
-        playerTypeMental: "Mental",
-        playerTypeGeneral: "Général",
-        teamCollectiveAnalysis: "Analyse Collective de l'Équipe",
-        categoryAverages: "Moyennes par Catégorie",
-        teamOverallAverages: "Moyennes Générales de l'Équipe",
-        categorySkill: "Technique",
-        categoryPhysical: "Physique",
-        categoryTactical: "Tactique",
-        categoryMental: "Mental",
-        overallTeamAverage: "Moyenne générale de l'équipe :",
-        suggestedFormations: "Formations Suggérées et Forces/Faiblesses",
-        noFormationSuggestion: "Aucune suggestion de formation actuellement disponible.",
-        noStrengthsWeaknesses: "Aucune force et faiblesse spécifique actuellement disponible.",
-        formationOffensive: "Basé sur votre philosophie offensive et la moyenne technique élevée, une formation 4-3-3 ou 4-2-3-1 pourrait convenir.",
-        strengthsOffensive: "Forces : Capacité à construire le jeu offensif, compétences individuelles élevées, et pressing avancé.",
-        weaknessesOffensive: "Faiblesses potentielles : Il pourrait y avoir des espaces derrière la ligne de défense, besoin d'équilibre défensif.",
-        formationDefensive: "Basé sur votre philosophie défensive et la bonne moyenne des capacités physiques, une formation 4-4-2 ou 5-3-2 pourrait convenir.",
-        strengthsDefensive: "Forces : Organisation défensive solide, capacité d'endurance physique, et solidité défensive.",
-        weaknessesDefensive: "Faiblesses potentielles : Peut avoir des difficultés dans la transition rapide vers l'attaque, besoin de joueurs créatifs devant.",
-        formationPossession: "Basé sur votre philosophie de possession et la bonne moyenne de compréhension tactique, une formation 4-3-3 ou 4-1-4-1 pourrait convenir.",
-        strengthsPossession: "Forces : Contrôle du ballon, construction du jeu depuis l'arrière, et capacité à dicter le tempo.",
-        weaknessesPossession: "Faiblesses potentielles : Peut être vulnérable aux contre-attaques rapides, besoin de concentration élevée tout au long du match.",
-        formationFormationBased: "Vous avez choisi une philosophie basée sur la formation. Veuillez spécifier votre formation préférée pour une analyse plus approfondie.",
-        strengthsFormationBased: "Forces : Flexibilité tactique et capacité à s'adapter aux adversaires.",
-        weaknessesFormationBased: "Faiblesses potentielles : Peut nécessiter plus de temps pour que les joueurs s'adaptent aux changements fréquents de formation.",
-        formationGeneral: "Aucune suggestion de formation spécifique actuellement disponible. Nous pouvons analyser plus profondément après avoir sélectionné la philosophie de jeu et avoir suffisamment de données sur les joueurs.",
-        strengthsGeneral: "Forces : Dépendent des capacités moyennes de l'équipe.",
-        weaknessesGeneral: "Faiblesses : Dépendent des capacités moyennes de l'équipe.",
-        programGenerationTitle: "Génération de Programmes d'Entraînement",
-        annualProgram: "Programme Annuel",
-        monthlyProgram: "Programme Mensuel",
-        weeklyProgram: "Programme Hebdomadaire",
-        physicalProgram: "Programme de Préparation Physique",
-        programOutputPlaceholder: "Le programme d'entraînement généré apparaîtra ici.",
-        generatingProgram: "Génération du programme...",
-        programGenerationError: "Échec de la génération du programme d'entraînement. Veuillez réessayer.",
-        apiConnectionError: "Erreur lors de la connexion au modèle :",
-        printProgram: "Imprimer le programme (PDF)",
-        printPdfNotAvailable: "La fonction d'impression PDF est en cours de développement. Vous pouvez copier le texte manuellement.",
-        aboutTitle: "À propos du site web",
-        aboutText1: "Ce site web est un système complet de gestion d'entraînement sportif pour le football, conçu spécifiquement pour les entraîneurs. Il fournit des outils avancés pour créer des programmes d'entraînement personnalisés qui conviennent aux besoins de l'équipe et au style d'entraînement préféré. Notre objectif est de simplifier le processus de planification et d'analyse, aidant les entraîneurs à atteindre le potentiel maximum de leurs joueurs et équipes.",
-        aboutText2: "Le site web comprend des fonctionnalités telles que la gestion du profil d'entraîneur, la sélection de groupes d'âge, la planification des entraînements et des matchs, la détermination de la philosophie de jeu, et la gestion complète des joueurs avec des évaluations détaillées des compétences physiques, tactiques et mentales. Il fournit également une analyse avancée de l'équipe et des suggestions de plans, plus la capacité de générer divers programmes d'entraînement et de les imprimer.",
-        contactTitle: "Contactez-nous",
-        yourNameLabel: "Votre nom :",
-        yourNamePlaceholder: "Votre nom complet",
-        yourEmailLabel: "Votre email :",
-        yourEmailPlaceholder: "exemple@exemple.com",
-        yourMessageLabel: "Votre message :",
-        yourMessagePlaceholder: "Écrivez votre message ici...",
-        sendMessage: "Envoyer le message",
-        footerText: "© 2025 Système de Gestion d'Entraînement Sportif. Tous droits réservés.",
-        sunday: "Dimanche",
-        monday: "Lundi",
-        tuesday: "Mardi",
-        wednesday: "Mercredi",
-        thursday: "Jeudi",
-        friday: "Vendredi",
-        saturday: "Samedi",
-        programFocusAnnual: "Planification complète de la saison, division des périodes (préparation, compétition, transition), et objectifs principaux pour chaque période.",
-        programFocusMonthly: "Objectifs d'entraînement spécifiques pour le mois, exercices détaillés, et évaluation des progrès.",
-        programFocusWeekly: "Planning quotidien d'entraînement, exercices spécifiques, et distribution de la charge d'entraînement.",
-        programFocusPhysical: "Programme complet de préparation physique axé sur le développement de la force, de la vitesse, de l'endurance et de la flexibilité."
+// Application de gestion d'entraînement de football
+class FootballManager {
+    constructor() {
+        this.currentUser = null;
+        this.currentView = 'home';
+        this.players = [];
+        this.events = [];
+        this.coachProfile = {};
+        this.selectedCategory = '';
+        this.currentWeek = new Date();
+        this.charts = {};
+        
+        this.init();
     }
-};
+
+    init() {
+        this.setupEventListeners();
+        this.loadData();
+        this.showLoader();
+        
+        // Simuler le chargement
+        setTimeout(() => {
+            this.hideLoader();
+            this.showView('home');
+        }, 2000);
+    }
+
+    // Gestion du loader
+    showLoader() {
+        document.getElementById('loader').classList.remove('hidden');
+    }
+
+    hideLoader() {
+        document.getElementById('loader').classList.add('hidden');
+    }
+
+    // Gestion des vues
+    showView(viewName) {
+        // Masquer toutes les vues
+        document.querySelectorAll('.view').forEach(view => {
+            view.classList.remove('active');
+        });
+
+        // Afficher la vue demandée
+        const targetView = document.getElementById(`${viewName}-view`);
+        if (targetView) {
+            targetView.classList.add('active');
+            this.currentView = viewName;
+        }
+
+        // Gérer la navigation
+        if (viewName === 'home' || viewName === 'login' || viewName === 'register') {
+            document.getElementById('main-nav').classList.add('hidden');
+        } else {
+            document.getElementById('main-nav').classList.remove('hidden');
+        }
+
+        // Actions spécifiques par vue
+        switch (viewName) {
+            case 'dashboard':
+                this.updateDashboard();
+                break;
+            case 'players':
+                this.updatePlayersView();
+                break;
+            case 'analysis':
+                this.updateAnalysisView();
+                break;
+            case 'calendar':
+                this.updateCalendarView();
+                break;
+            case 'training-plans':
+                this.updateTrainingPlansView();
+                break;
+        }
+    }
+
+    // Configuration des écouteurs d'événements
+    setupEventListeners() {
+        // Navigation
+        document.querySelectorAll('[data-view]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showView(link.dataset.view);
+            });
+        });
+
+        // Authentification
+        document.getElementById('login-btn').addEventListener('click', () => this.showView('login'));
+        document.getElementById('register-btn').addEventListener('click', () => this.showView('register'));
+        document.getElementById('switch-to-register').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showView('register');
+        });
+        document.getElementById('switch-to-login').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showView('login');
+        });
+        document.getElementById('logout-btn').addEventListener('click', () => this.logout());
+
+        // Formulaires d'authentification
+        document.getElementById('login-form').addEventListener('submit', (e) => this.handleLogin(e));
+        document.getElementById('register-form').addEventListener('submit', (e) => this.handleRegister(e));
+
+        // Profil du coach
+        document.getElementById('coach-profile-form').addEventListener('submit', (e) => this.saveCoachProfile(e));
+
+        // Catégories d'âge
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => this.selectCategory(card.dataset.category));
+        });
+        document.getElementById('confirm-category').addEventListener('click', () => this.confirmCategory());
+
+        // Calendrier
+        document.getElementById('prev-week').addEventListener('click', () => this.changeWeek(-1));
+        document.getElementById('next-week').addEventListener('click', () => this.changeWeek(1));
+        document.getElementById('add-event-btn').addEventListener('click', () => this.showEventModal());
+
+        // Joueurs
+        document.getElementById('add-player-btn').addEventListener('click', () => this.showPlayerModal());
+        document.getElementById('player-search').addEventListener('input', (e) => this.filterPlayers(e.target.value));
+        document.getElementById('position-filter').addEventListener('change', (e) => this.filterPlayersByPosition(e.target.value));
+
+        // Analyse
+        document.querySelectorAll('.analysis-tabs .tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => this.switchAnalysisTab(btn.dataset.tab));
+        });
+        document.getElementById('analysis-player-select').addEventListener('change', (e) => this.showPlayerAnalysis(e.target.value));
+
+        // Plans d'entraînement
+        document.getElementById('generate-plan-btn').addEventListener('click', () => this.generateTrainingPlan());
+        document.getElementById('create-custom-plan-btn').addEventListener('click', () => this.createCustomPlan());
+        document.getElementById('export-pdf-btn').addEventListener('click', () => this.exportToPDF());
+        document.getElementById('save-plan-btn').addEventListener('click', () => this.savePlan());
+
+        // Modales
+        this.setupModalListeners();
+
+        // Navigation mobile
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Sliders de compétences
+        this.setupSkillSliders();
+    }
+
+    setupModalListeners() {
+        // Fermeture des modales
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', () => this.closeModals());
+        });
+
+        // Clic en dehors de la modale
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeModals();
+                }
+            });
+        });
+
+        // Formulaire d'événement
+        document.getElementById('event-form').addEventListener('submit', (e) => this.saveEvent(e));
+        document.getElementById('cancel-event').addEventListener('click', () => this.closeModals());
+
+        // Formulaire de joueur
+        document.getElementById('player-form').addEventListener('submit', (e) => this.savePlayer(e));
+        document.getElementById('cancel-player').addEventListener('click', () => this.closeModals());
+
+        // Onglets du formulaire joueur
+        document.querySelectorAll('.player-form-tabs .tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => this.switchPlayerFormTab(btn.dataset.tab));
+        });
+    }
+
+    setupSkillSliders() {
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
+            const valueDisplay = slider.nextElementSibling;
+            
+            slider.addEventListener('input', () => {
+                valueDisplay.textContent = slider.value;
+            });
+        });
+    }
+
+    // Authentification
+    handleLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        // Simulation de l'authentification
+        if (email && password) {
+            this.currentUser = { email, name: 'Coach' };
+            this.showNotification('Connexion réussie!', 'success');
+            this.showView('dashboard');
+        } else {
+            this.showNotification('Veuillez remplir tous les champs', 'error');
+        }
+    }
+
+    handleRegister(e) {
+        e.preventDefault();
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+
+        // Simulation de l'inscription
+        if (name && email && password) {
+            this.currentUser = { email, name };
+            this.showNotification('Inscription réussie!', 'success');
+            this.showView('dashboard');
+        } else {
+            this.showNotification('Veuillez remplir tous les champs', 'error');
+        }
+    }
+
+    logout() {
+        this.currentUser = null;
+        this.showNotification('Déconnexion réussie', 'info');
+        this.showView('home');
+    }
+
+    // Profil du coach
+    saveCoachProfile(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        
+        this.coachProfile = {
+            name: document.getElementById('coach-name').value,
+            age: document.getElementById('coach-age').value,
+            nationality: document.getElementById('coach-nationality').value,
+            phone: document.getElementById('coach-phone').value,
+            continent: document.getElementById('coach-continent').value,
+            license: document.getElementById('coach-license').value,
+            style: document.getElementById('coach-style').value
+        };
+
+        this.saveData();
+        this.showNotification('Profil sauvegardé avec succès!', 'success');
+    }
+
+    // Catégories d'âge
+    selectCategory(category) {
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        
+        document.querySelector(`[data-category="${category}"]`).classList.add('selected');
+        document.getElementById('selected-category').textContent = category;
+        document.getElementById('category-selection').classList.remove('hidden');
+    }
+
+    confirmCategory() {
+        const selectedCard = document.querySelector('.category-card.selected');
+        if (selectedCard) {
+            this.selectedCategory = selectedCard.dataset.category;
+            this.saveData();
+            this.showNotification(`Catégorie ${this.selectedCategory} sélectionnée!`, 'success');
+        }
+    }
+
+    // Calendrier
+    updateCalendarView() {
+        this.updateWeekDisplay();
+        this.generateCalendarGrid();
+        this.displayEvents();
+    }
+
+    updateWeekDisplay() {
+        const weekStart = this.getWeekStart(this.currentWeek);
+        const weekEnd = new Date(weekStart);
+        weekEnd.setDate(weekEnd.getDate() + 6);
+        
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const startStr = weekStart.toLocaleDateString('fr-FR', options);
+        const endStr = weekEnd.toLocaleDateString('fr-FR', options);
+        
+        document.getElementById('current-week').textContent = `${startStr} - ${endStr}`;
+    }
+
+    getWeekStart(date) {
+        const d = new Date(date);
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+        return new Date(d.setDate(diff));
+    }
+
+    changeWeek(direction) {
+        this.currentWeek.setDate(this.currentWeek.getDate() + (direction * 7));
+        this.updateCalendarView();
+    }
+
+    generateCalendarGrid() {
+        const calendarBody = document.getElementById('calendar-body');
+        calendarBody.innerHTML = '';
+
+        const hours = [];
+        for (let i = 8; i <= 22; i++) {
+            hours.push(`${i}:00`);
+        }
+
+        hours.forEach(hour => {
+            const timeSlot = document.createElement('div');
+            timeSlot.className = 'time-slot';
+            
+            const timeLabel = document.createElement('div');
+            timeLabel.className = 'time-label';
+            timeLabel.textContent = hour;
+            timeSlot.appendChild(timeLabel);
+
+            for (let day = 0; day < 7; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'day-cell';
+                dayCell.dataset.day = day;
+                dayCell.dataset.hour = hour;
+                
+                dayCell.addEventListener('click', () => {
+                    this.showEventModal(day, hour);
+                });
+                
+                timeSlot.appendChild(dayCell);
+            }
+
+            calendarBody.appendChild(timeSlot);
+        });
+    }
+
+    displayEvents() {
+        // Effacer les événements existants
+        document.querySelectorAll('.calendar-event').forEach(event => event.remove());
+
+        const weekStart = this.getWeekStart(this.currentWeek);
+
+        this.events.forEach(event => {
+            const eventDate = new Date(event.date);
+            const dayDiff = Math.floor((eventDate - weekStart) / (1000 * 60 * 60 * 24));
+
+            if (dayDiff >= 0 && dayDiff < 7) {
+                const eventHour = event.time.split(':')[0] + ':00';
+                const targetCell = document.querySelector(`[data-day="${dayDiff}"][data-hour="${eventHour}"]`);
+
+                if (targetCell) {
+                    const eventElement = document.createElement('div');
+                    eventElement.className = `calendar-event ${event.type}`;
+                    eventElement.textContent = event.title;
+                    eventElement.title = `${event.title} - ${event.time}`;
+                    
+                    eventElement.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.editEvent(event);
+                    });
+
+                    targetCell.appendChild(eventElement);
+                }
+            }
+        });
+    }
+
+    showEventModal(day = null, hour = null) {
+        const modal = document.getElementById('event-modal');
+        modal.classList.add('active');
+
+        if (day !== null && hour !== null) {
+            const weekStart = this.getWeekStart(this.currentWeek);
+            const eventDate = new Date(weekStart);
+            eventDate.setDate(eventDate.getDate() + day);
+            
+            document.getElementById('event-date').value = eventDate.toISOString().split('T')[0];
+            document.getElementById('event-time').value = hour;
+        }
+    }
+
+    saveEvent(e) {
+        e.preventDefault();
+        
+        const event = {
+            id: Date.now(),
+            title: document.getElementById('event-title').value,
+            type: document.getElementById('event-type').value,
+            date: document.getElementById('event-date').value,
+            time: document.getElementById('event-time').value,
+            duration: document.getElementById('event-duration').value,
+            description: document.getElementById('event-description').value
+        };
+
+        this.events.push(event);
+        this.saveData();
+        this.closeModals();
+        this.displayEvents();
+        this.showNotification('Événement ajouté avec succès!', 'success');
+    }
+
+    // Gestion des joueurs
+    updatePlayersView() {
+        this.displayPlayers();
+    }
+
+    displayPlayers(filteredPlayers = null) {
+        const playersGrid = document.getElementById('players-grid');
+        playersGrid.innerHTML = '';
+
+        const playersToShow = filteredPlayers || this.players;
+
+        playersToShow.forEach(player => {
+            const playerCard = this.createPlayerCard(player);
+            playersGrid.appendChild(playerCard);
+        });
+    }
+
+    createPlayerCard(player) {
+        const card = document.createElement('div');
+        card.className = 'player-card';
+        
+        const avgSkills = this.calculatePlayerAverages(player);
+        
+        card.innerHTML = `
+            <div class="player-card-header">
+                <div class="player-number">${player.number || '?'}</div>
+                <div class="player-name">${player.name}</div>
+                <div class="player-position">${this.getPositionName(player.position)}</div>
+            </div>
+            <div class="player-card-body">
+                <div class="player-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">${avgSkills.technical.toFixed(1)}</span>
+                        <span class="stat-label">Technique</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${avgSkills.physical.toFixed(1)}</span>
+                        <span class="stat-label">Physique</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${avgSkills.tactical.toFixed(1)}</span>
+                        <span class="stat-label">Tactique</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${avgSkills.mental.toFixed(1)}</span>
+                        <span class="stat-label">Mental</span>
+                    </div>
+                </div>
+                <div class="player-actions">
+                    <button class="btn-icon btn-edit" onclick="footballManager.editPlayer(${player.id})">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-icon btn-delete" onclick="footballManager.deletePlayer(${player.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        return card;
+    }
+
+    getPositionName(position) {
+        const positions = {
+            'GK': 'Gardien',
+            'DEF': 'Défenseur',
+            'MID': 'Milieu',
+            'ATT': 'Attaquant'
+        };
+        return positions[position] || position;
+    }
+
+    calculatePlayerAverages(player) {
+        const skills = player.skills || {};
+        
+        const technical = Object.values(skills.technical || {});
+        const physical = Object.values(skills.physical || {});
+        const tactical = Object.values(skills.tactical || {});
+        const mental = Object.values(skills.mental || {});
+
+        return {
+            technical: technical.length ? technical.reduce((a, b) => a + b, 0) / technical.length : 0,
+            physical: physical.length ? physical.reduce((a, b) => a + b, 0) / physical.length : 0,
+            tactical: tactical.length ? tactical.reduce((a, b) => a + b, 0) / tactical.length : 0,
+            mental: mental.length ? mental.reduce((a, b) => a + b, 0) / mental.length : 0
+        };
+    }
+
+    filterPlayers(searchTerm) {
+        const filtered = this.players.filter(player => 
+            player.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        this.displayPlayers(filtered);
+    }
+
+    filterPlayersByPosition(position) {
+        if (!position) {
+            this.displayPlayers();
+            return;
+        }
+        
+        const filtered = this.players.filter(player => player.position === position);
+        this.displayPlayers(filtered);
+    }
+
+    showPlayerModal(playerId = null) {
+        const modal = document.getElementById('player-modal');
+        const title = document.getElementById('player-modal-title');
+        
+        if (playerId) {
+            title.textContent = 'Modifier le joueur';
+            this.loadPlayerData(playerId);
+        } else {
+            title.textContent = 'Ajouter un joueur';
+            this.resetPlayerForm();
+        }
+        
+        modal.classList.add('active');
+    }
+
+    loadPlayerData(playerId) {
+        const player = this.players.find(p => p.id === playerId);
+        if (!player) return;
+
+        document.getElementById('player-name').value = player.name || '';
+        document.getElementById('player-age').value = player.age || '';
+        document.getElementById('player-position').value = player.position || '';
+        document.getElementById('player-number').value = player.number || '';
+
+        // Charger les compétences
+        if (player.skills) {
+            this.loadSkillsToForm(player.skills);
+        }
+    }
+
+    loadSkillsToForm(skills) {
+        const skillMappings = {
+            'skill-passing': skills.technical?.['التمرير'] || 10,
+            'skill-receiving': skills.technical?.['الاستقبال'] || 10,
+            'skill-dribbling': skills.technical?.['المراوغة'] || 10,
+            'skill-shooting': skills.technical?.['التسديد'] || 10,
+            'skill-heading': skills.technical?.['الضرب بالرأس'] || 10,
+            'skill-ball-control': skills.technical?.['التحكم بالكرة'] || 10,
+            'skill-endurance': skills.physical?.['التحمل البدني'] || 10,
+            'skill-fitness': skills.physical?.['اللياقة البدنية'] || 10,
+            'skill-speed': skills.physical?.['السرعة'] || 10,
+            'skill-strength': skills.physical?.['القوة البدنية'] || 10,
+            'skill-agility': skills.physical?.['التوازن والرشاقة'] || 10,
+            'skill-balance': skills.physical?.['التوازن والرشاقة'] || 10,
+            'skill-positioning': skills.tactical?.['التمركز الصحيح'] || 10,
+            'skill-game-reading': skills.tactical?.['قراءة اللعب'] || 10,
+            'skill-decision-making': skills.tactical?.['الذكاء بالكرة أو بدونها'] || 10,
+            'skill-teamwork': skills.tactical?.['التنظيم والضغط الجماعي'] || 10,
+            'skill-concentration': skills.mental?.['التركيز'] || 10,
+            'skill-confidence': skills.mental?.['الثقة بالنفس'] || 10,
+            'skill-leadership': skills.mental?.['القيادة'] || 10,
+            'skill-motivation': skills.mental?.['الحافز والرغبة في الفوز'] || 10
+        };
+
+        Object.entries(skillMappings).forEach(([skillId, value]) => {
+            const slider = document.getElementById(skillId);
+            if (slider) {
+                slider.value = value;
+                const valueDisplay = slider.nextElementSibling;
+                if (valueDisplay) {
+                    valueDisplay.textContent = value;
+                }
+            }
+        });
+    }
+
+    resetPlayerForm() {
+        document.getElementById('player-form').reset();
+        
+        // Réinitialiser tous les sliders à 10
+        document.querySelectorAll('#player-form input[type="range"]').forEach(slider => {
+            slider.value = 10;
+            const valueDisplay = slider.nextElementSibling;
+            if (valueDisplay) {
+                valueDisplay.textContent = '10';
+            }
+        });
+    }
+
+    switchPlayerFormTab(tabName) {
+        // Gérer les onglets
+        document.querySelectorAll('.player-form-tabs .tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+        // Gérer le contenu
+        document.querySelectorAll('#player-modal .tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.getElementById(`${tabName}-info`).classList.add('active');
+    }
+
+    savePlayer(e) {
+        e.preventDefault();
+        
+        const playerData = {
+            id: Date.now(),
+            name: document.getElementById('player-name').value,
+            age: parseInt(document.getElementById('player-age').value),
+            position: document.getElementById('player-position').value,
+            number: parseInt(document.getElementById('player-number').value),
+            skills: this.getSkillsFromForm()
+        };
+
+        // Vérifier si le numéro est déjà utilisé
+        if (this.players.some(p => p.number === playerData.number && p.id !== playerData.id)) {
+            this.showNotification('Ce numéro de maillot est déjà utilisé!', 'error');
+            return;
+        }
+
+        this.players.push(playerData);
+        this.saveData();
+        this.closeModals();
+        this.updatePlayersView();
+        this.showNotification('Joueur ajouté avec succès!', 'success');
+    }
+
+    getSkillsFromForm() {
+        return {
+            technical: {
+                'التمرير': parseInt(document.getElementById('skill-passing').value),
+                'الاستقبال': parseInt(document.getElementById('skill-receiving').value),
+                'المراوغة': parseInt(document.getElementById('skill-dribbling').value),
+                'التسديد': parseInt(document.getElementById('skill-shooting').value),
+                'الضرب بالرأس': parseInt(document.getElementById('skill-heading').value),
+                'التحكم بالكرة': parseInt(document.getElementById('skill-ball-control').value)
+            },
+            physical: {
+                'التحمل البدني': parseInt(document.getElementById('skill-endurance').value),
+                'اللياقة البدنية': parseInt(document.getElementById('skill-fitness').value),
+                'السرعة': parseInt(document.getElementById('skill-speed').value),
+                'القوة البدنية': parseInt(document.getElementById('skill-strength').value),
+                'التوازن والرشاقة': parseInt(document.getElementById('skill-agility').value)
+            },
+            tactical: {
+                'التمركز الصحيح': parseInt(document.getElementById('skill-positioning').value),
+                'قراءة اللعب': parseInt(document.getElementById('skill-game-reading').value),
+                'الذكاء بالكرة أو بدونها': parseInt(document.getElementById('skill-decision-making').value),
+                'التنظيم والضغط الجماعي': parseInt(document.getElementById('skill-teamwork').value)
+            },
+            mental: {
+                'التركيز': parseInt(document.getElementById('skill-concentration').value),
+                'الثقة بالنفس': parseInt(document.getElementById('skill-confidence').value),
+                'القيادة': parseInt(document.getElementById('skill-leadership').value),
+                'الحافز والرغبة في الفوز': parseInt(document.getElementById('skill-motivation').value)
+            }
+        };
+    }
+
+    editPlayer(playerId) {
+        this.showPlayerModal(playerId);
+    }
+
+    deletePlayer(playerId) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer ce joueur ?')) {
+            this.players = this.players.filter(p => p.id !== playerId);
+            this.saveData();
+            this.updatePlayersView();
+            this.showNotification('Joueur supprimé avec succès!', 'success');
+        }
+    }
+
+    // Analyse
+    updateAnalysisView() {
+        this.updatePlayerSelector();
+        this.updateTeamAnalysis();
+    }
+
+    updatePlayerSelector() {
+        const select = document.getElementById('analysis-player-select');
+        select.innerHTML = '<option value="">Choisir un joueur...</option>';
+        
+        this.players.forEach(player => {
+            const option = document.createElement('option');
+            option.value = player.id;
+            option.textContent = `${player.name} (${this.getPositionName(player.position)})`;
+            select.appendChild(option);
+        });
+    }
+
+    switchAnalysisTab(tabName) {
+        // Gérer les onglets
+        document.querySelectorAll('.analysis-tabs .tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+        // Gérer le contenu
+        document.querySelectorAll('.analysis-container .tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.getElementById(`${tabName}-analysis`).classList.add('active');
+
+        if (tabName === 'suggestions') {
+            this.generateSuggestions();
+        }
+    }
+
+    showPlayerAnalysis(playerId) {
+        if (!playerId) return;
+        
+        const player = this.players.find(p => p.id == playerId);
+        if (!player || !player.skills) return;
+
+        this.createPlayerCharts(player);
+    }
+
+    createPlayerCharts(player) {
+        const skills = player.skills;
+        
+        // Graphique technique
+        this.createRadarChart('technical-chart', 'Compétences techniques', skills.technical);
+        
+        // Graphique physique
+        this.createRadarChart('physical-chart', 'Capacités physiques', skills.physical);
+        
+        // Graphique tactique
+        this.createRadarChart('tactical-chart', 'Intelligence tactique', skills.tactical);
+        
+        // Graphique mental
+        this.createRadarChart('mental-chart', 'Aspect mental', skills.mental);
+    }
+
+    createRadarChart(canvasId, title, data) {
+        const ctx = document.getElementById(canvasId);
+        if (!ctx) return;
+
+        // Détruire le graphique existant s'il y en a un
+        if (this.charts[canvasId]) {
+            this.charts[canvasId].destroy();
+        }
+
+        const labels = Object.keys(data).map(key => this.translateSkill(key));
+        const values = Object.values(data);
+
+        this.charts[canvasId] = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: title,
+                    data: values,
+                    backgroundColor: 'rgba(46, 139, 87, 0.2)',
+                    borderColor: 'rgba(46, 139, 87, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(46, 139, 87, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(46, 139, 87, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 20,
+                        ticks: {
+                            stepSize: 5
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+    translateSkill(arabicSkill) {
+        const translations = {
+            'التمرير': 'Passes',
+            'الاستقبال': 'Réception',
+            'المراوغة': 'Dribble',
+            'التسديد': 'Tir',
+            'الضرب بالرأس': 'Jeu de tête',
+            'التحكم بالكرة': 'Contrôle',
+            'التحمل البدني': 'Endurance',
+            'اللياقة البدنية': 'Condition',
+            'السرعة': 'Vitesse',
+            'القوة البدنية': 'Force',
+            'التوازن والرشاقة': 'Agilité',
+            'التمركز الصحيح': 'Positionnement',
+            'قراءة اللعب': 'Lecture du jeu',
+            'الذكاء بالكرة أو بدونها': 'Intelligence',
+            'التنظيم والضغط الجماعي': 'Jeu d\'équipe',
+            'التركيز': 'Concentration',
+            'الثقة بالنفس': 'Confiance',
+            'القيادة': 'Leadership',
+            'الحافز والرغبة في الفوز': 'Motivation'
+        };
+        return translations[arabicSkill] || arabicSkill;
+    }
+
+    updateTeamAnalysis() {
+        if (this.players.length === 0) return;
+
+        const teamAverages = this.calculateTeamAverages();
+        
+        // Mettre à jour les moyennes affichées
+        document.getElementById('team-technical-avg').textContent = teamAverages.technical.toFixed(1);
+        document.getElementById('team-physical-avg').textContent = teamAverages.physical.toFixed(1);
+        document.getElementById('team-tactical-avg').textContent = teamAverages.tactical.toFixed(1);
+        document.getElementById('team-mental-avg').textContent = teamAverages.mental.toFixed(1);
+
+        // Créer les graphiques d'équipe
+        this.createTeamCharts(teamAverages);
+    }
+
+    calculateTeamAverages() {
+        if (this.players.length === 0) {
+            return { technical: 0, physical: 0, tactical: 0, mental: 0 };
+        }
+
+        const totals = { technical: 0, physical: 0, tactical: 0, mental: 0 };
+        
+        this.players.forEach(player => {
+            const averages = this.calculatePlayerAverages(player);
+            totals.technical += averages.technical;
+            totals.physical += averages.physical;
+            totals.tactical += averages.tactical;
+            totals.mental += averages.mental;
+        });
+
+        return {
+            technical: totals.technical / this.players.length,
+            physical: totals.physical / this.players.length,
+            tactical: totals.tactical / this.players.length,
+            mental: totals.mental / this.players.length
+        };
+    }
+
+    createTeamCharts(averages) {
+        // Graphique de répartition (Pie)
+        this.createPieChart('team-distribution-chart', averages);
+        
+        // Graphique radar de l'équipe
+        this.createTeamRadarChart('team-radar-chart', averages);
+    }
+
+    createPieChart(canvasId, data) {
+        const ctx = document.getElementById(canvasId);
+        if (!ctx) return;
+
+        if (this.charts[canvasId]) {
+            this.charts[canvasId].destroy();
+        }
+
+        this.charts[canvasId] = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Technique', 'Physique', 'Tactique', 'Mental'],
+                datasets: [{
+                    data: [data.technical, data.physical, data.tactical, data.mental],
+                    backgroundColor: [
+                        'rgba(46, 139, 87, 0.8)',
+                        'rgba(255, 107, 53, 0.8)',
+                        'rgba(23, 162, 184, 0.8)',
+                        'rgba(255, 193, 7, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(46, 139, 87, 1)',
+                        'rgba(255, 107, 53, 1)',
+                        'rgba(23, 162, 184, 1)',
+                        'rgba(255, 193, 7, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    }
+
+    createTeamRadarChart(canvasId, data) {
+        const ctx = document.getElementById(canvasId);
+        if (!ctx) return;
+
+        if (this.charts[canvasId]) {
+            this.charts[canvasId].destroy();
+        }
+
+        this.charts[canvasId] = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Technique', 'Physique', 'Tactique', 'Mental'],
+                datasets: [{
+                    label: 'Profil de l\'équipe',
+                    data: [data.technical, data.physical, data.tactical, data.mental],
+                    backgroundColor: 'rgba(46, 139, 87, 0.2)',
+                    borderColor: 'rgba(46, 139, 87, 1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: 'rgba(46, 139, 87, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(46, 139, 87, 1)',
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 20,
+                        ticks: {
+                            stepSize: 5
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+    generateSuggestions() {
+        const suggestionsContainer = document.getElementById('team-suggestions');
+        const recommendedStyleContainer = document.getElementById('recommended-style');
+        
+        if (this.players.length === 0) {
+            suggestionsContainer.innerHTML = '<p>Ajoutez des joueurs pour obtenir des suggestions.</p>';
+            recommendedStyleContainer.innerHTML = '<p>Aucune recommandation disponible.</p>';
+            return;
+        }
+
+        const averages = this.calculateTeamAverages();
+        const suggestions = this.generateTeamSuggestions(averages);
+        const recommendedStyle = this.getRecommendedStyle(averages);
+
+        // Afficher les suggestions
+        suggestionsContainer.innerHTML = suggestions.map(suggestion => 
+            `<div class="suggestion-item">${suggestion}</div>`
+        ).join('');
+
+        // Afficher le style recommandé
+        recommendedStyleContainer.innerHTML = `
+            <h4>${recommendedStyle.name}</h4>
+            <p>${recommendedStyle.description}</p>
+        `;
+    }
+
+    generateTeamSuggestions(averages) {
+        const suggestions = [];
+        
+        if (averages.technical < 12) {
+            suggestions.push('🎯 Concentrez-vous sur l\'amélioration des compétences techniques : passes, contrôle de balle et dribbles.');
+        }
+        
+        if (averages.physical < 12) {
+            suggestions.push('💪 Renforcez la condition physique de l\'équipe avec plus d\'entraînements cardio et de musculation.');
+        }
+        
+        if (averages.tactical < 12) {
+            suggestions.push('🧠 Travaillez sur l\'intelligence tactique : positionnement, lecture du jeu et organisation collective.');
+        }
+        
+        if (averages.mental < 12) {
+            suggestions.push('🎭 Développez l\'aspect mental : confiance, concentration et gestion du stress.');
+        }
+
+        // Suggestions spécifiques basées sur les points forts
+        const strongest = Object.keys(averages).reduce((a, b) => averages[a] > averages[b] ? a : b);
+        const weakest = Object.keys(averages).reduce((a, b) => averages[a] < averages[b] ? a : b);
+
+        if (strongest === 'technical') {
+            suggestions.push('⚡ Exploitez vos compétences techniques supérieures avec un jeu de possession.');
+        } else if (strongest === 'physical') {
+            suggestions.push('🏃 Utilisez votre avantage physique avec un jeu de pressing et de transitions rapides.');
+        }
+
+        if (suggestions.length === 0) {
+            suggestions.push('✅ Votre équipe présente un bon équilibre dans tous les domaines. Continuez le travail !');
+        }
+
+        return suggestions;
+    }
+
+    getRecommendedStyle(averages) {
+        const styles = {
+            technical: {
+                name: 'Jeu de possession',
+                description: 'Privilégiez un jeu basé sur la conservation du ballon, les passes courtes et la construction patiente.'
+            },
+            physical: {
+                name: 'Jeu de transition',
+                description: 'Exploitez votre condition physique avec un jeu direct, du pressing haut et des transitions rapides.'
+            },
+            tactical: {
+                name: 'Jeu organisé',
+                description: 'Misez sur une organisation défensive solide et des mouvements tactiques précis.'
+            },
+            mental: {
+                name: 'Jeu de caractère',
+                description: 'Votre force mentale vous permet d\'adopter un style agressif et de prendre des risques.'
+            }
+        };
+
+        const dominant = Object.keys(averages).reduce((a, b) => averages[a] > averages[b] ? a : b);
+        return styles[dominant] || styles.technical;
+    }
+
+    // Plans d'entraînement
+    updateTrainingPlansView() {
+        // Initialiser la vue des plans d'entraînement
+    }
+
+    generateTrainingPlan() {
+        const planType = document.getElementById('plan-type').value;
+        const planContent = document.getElementById('training-plan-content');
+        
+        if (this.players.length === 0) {
+            this.showNotification('Ajoutez des joueurs pour générer un plan d\'entraînement', 'warning');
+            return;
+        }
+
+        const averages = this.calculateTeamAverages();
+        const plan = this.createTrainingPlan(planType, averages);
+        
+        planContent.innerHTML = plan;
+        this.showNotification('Plan d\'entraînement généré avec succès!', 'success');
+    }
+
+    createTrainingPlan(type, averages) {
+        const weakestArea = Object.keys(averages).reduce((a, b) => averages[a] < averages[b] ? a : b);
+        
+        let plan = `<h3>Plan d'entraînement ${type === 'weekly' ? 'hebdomadaire' : type === 'monthly' ? 'mensuel' : 'de préparation physique'}</h3>`;
+        
+        if (type === 'weekly') {
+            plan += this.generateWeeklyPlan(weakestArea);
+        } else if (type === 'monthly') {
+            plan += this.generateMonthlyPlan(averages);
+        } else if (type === 'physical') {
+            plan += this.generatePhysicalPlan();
+        }
+        
+        return plan;
+    }
+
+    generateWeeklyPlan(focusArea) {
+        const plans = {
+            technical: `
+                <div class="training-day">
+                    <h4>Lundi - Technique individuelle</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Passes et contrôles (30 min)</li>
+                        <li>Dribbles et feintes (20 min)</li>
+                        <li>Tirs au but (15 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Mercredi - Jeu collectif</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Possession en supériorité numérique (25 min)</li>
+                        <li>Jeu à 11 contre 11 (40 min)</li>
+                        <li>Retour au calme (10 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Vendredi - Finition</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Centres et reprises (25 min)</li>
+                        <li>Situations de but (25 min)</li>
+                        <li>Étirements (15 min)</li>
+                    </ul>
+                </div>
+            `,
+            physical: `
+                <div class="training-day">
+                    <h4>Lundi - Endurance</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Course continue (25 min)</li>
+                        <li>Exercices avec ballon (30 min)</li>
+                        <li>Retour au calme (10 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Mercredi - Force et vitesse</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Sprints courts (20 min)</li>
+                        <li>Musculation (25 min)</li>
+                        <li>Étirements (20 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Vendredi - Agilité</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Parcours d'agilité (25 min)</li>
+                        <li>Jeu réduit (30 min)</li>
+                        <li>Récupération (10 min)</li>
+                    </ul>
+                </div>
+            `,
+            tactical: `
+                <div class="training-day">
+                    <h4>Lundi - Organisation défensive</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Placement défensif (25 min)</li>
+                        <li>Pressing coordonné (25 min)</li>
+                        <li>Jeu 11v11 (25 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Mercredi - Construction du jeu</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Sortie de balle (25 min)</li>
+                        <li>Circulation du ballon (25 min)</li>
+                        <li>Situations de match (25 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Vendredi - Phases arrêtées</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Corners et coups francs (30 min)</li>
+                        <li>Remises en jeu (15 min)</li>
+                        <li>Match d'application (30 min)</li>
+                    </ul>
+                </div>
+            `,
+            mental: `
+                <div class="training-day">
+                    <h4>Lundi - Concentration</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Exercices de précision (25 min)</li>
+                        <li>Jeu sous pression (30 min)</li>
+                        <li>Relaxation (10 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Mercredi - Confiance</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Réussite technique (25 min)</li>
+                        <li>Situations de réussite (25 min)</li>
+                        <li>Encouragements collectifs (15 min)</li>
+                    </ul>
+                </div>
+                <div class="training-day">
+                    <h4>Vendredi - Leadership</h4>
+                    <ul>
+                        <li>Échauffement (15 min)</li>
+                        <li>Communication sur le terrain (25 min)</li>
+                        <li>Responsabilités individuelles (25 min)</li>
+                        <li>Débriefing collectif (15 min)</li>
+                    </ul>
+                </div>
+            `
+        };
+        
+        return plans[focusArea] || plans.technical;
+    }
+
+    generateMonthlyPlan(averages) {
+        return `
+            <div class="monthly-plan">
+                <h4>Semaine 1 - Évaluation et bases</h4>
+                <p>Tests physiques, évaluation technique, mise en place des automatismes de base.</p>
+                
+                <h4>Semaine 2 - Développement technique</h4>
+                <p>Perfectionnement des gestes techniques, travail individuel intensif.</p>
+                
+                <h4>Semaine 3 - Tactique collective</h4>
+                <p>Organisation de jeu, mouvements collectifs, phases de jeu spécifiques.</p>
+                
+                <h4>Semaine 4 - Intégration et match</h4>
+                <p>Synthèse du travail, situations de match, préparation compétition.</p>
+            </div>
+        `;
+    }
+
+    generatePhysicalPlan() {
+        return `
+            <div class="physical-plan">
+                <h4>Phase 1 - Endurance de base (2 semaines)</h4>
+                <ul>
+                    <li>Course continue 30-45 minutes</li>
+                    <li>Travail aérobie avec ballon</li>
+                    <li>Récupération active</li>
+                </ul>
+                
+                <h4>Phase 2 - Force et puissance (2 semaines)</h4>
+                <ul>
+                    <li>Musculation spécifique</li>
+                    <li>Pliométrie</li>
+                    <li>Sprints courts</li>
+                </ul>
+                
+                <h4>Phase 3 - Vitesse et agilité (2 semaines)</h4>
+                <ul>
+                    <li>Sprints répétés</li>
+                    <li>Changements de direction</li>
+                    <li>Coordination</li>
+                </ul>
+            </div>
+        `;
+    }
+
+    createCustomPlan() {
+        const planContent = document.getElementById('training-plan-content');
+        planContent.innerHTML = `
+            <div class="custom-plan-editor">
+                <h3>Créer un plan personnalisé</h3>
+                <textarea id="custom-plan-text" rows="15" placeholder="Décrivez votre plan d'entraînement personnalisé..."></textarea>
+                <button class="btn btn-primary" onclick="footballManager.saveCustomPlan()">Sauvegarder le plan</button>
+            </div>
+        `;
+    }
+
+    saveCustomPlan() {
+        const customText = document.getElementById('custom-plan-text').value;
+        if (customText.trim()) {
+            this.showNotification('Plan personnalisé sauvegardé!', 'success');
+        } else {
+            this.showNotification('Veuillez saisir un contenu pour le plan', 'warning');
+        }
+    }
+
+    exportToPDF() {
+        const planContent = document.getElementById('training-plan-content');
+        if (!planContent.innerHTML.trim()) {
+            this.showNotification('Générez d\'abord un plan d\'entraînement', 'warning');
+            return;
+        }
+
+        // Utiliser jsPDF pour générer le PDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        doc.setFontSize(20);
+        doc.text('Plan d\'Entraînement', 20, 30);
+        
+        doc.setFontSize(12);
+        const text = planContent.textContent || planContent.innerText;
+        const lines = doc.splitTextToSize(text, 170);
+        doc.text(lines, 20, 50);
+        
+        doc.save('plan-entrainement.pdf');
+        this.showNotification('PDF exporté avec succès!', 'success');
+    }
+
+    savePlan() {
+        this.showNotification('Plan sauvegardé!', 'success');
+    }
+
+    // Tableau de bord
+    updateDashboard() {
+        this.updateDashboardStats();
+        this.updateDashboardCharts();
+        this.updateUpcomingEvents();
+    }
+
+    updateDashboardStats() {
+        document.getElementById('total-players').textContent = this.players.length;
+        document.getElementById('total-trainings').textContent = this.events.filter(e => e.type === 'training').length;
+        document.getElementById('total-matches').textContent = this.events.filter(e => e.type === 'match').length;
+        
+        if (this.players.length > 0) {
+            const teamAvg = this.calculateTeamAverages();
+            const overallAvg = (teamAvg.technical + teamAvg.physical + teamAvg.tactical + teamAvg.mental) / 4;
+            document.getElementById('team-average').textContent = overallAvg.toFixed(1);
+        } else {
+            document.getElementById('team-average').textContent = '0';
+        }
+    }
+
+    updateDashboardCharts() {
+        if (this.players.length > 0) {
+            const averages = this.calculateTeamAverages();
+            this.createPieChart('team-skills-chart', averages);
+        }
+    }
+
+    updateUpcomingEvents() {
+        const upcomingContainer = document.getElementById('upcoming-events');
+        const today = new Date();
+        const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+        
+        const upcomingEvents = this.events.filter(event => {
+            const eventDate = new Date(event.date);
+            return eventDate >= today && eventDate <= nextWeek;
+        }).sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        if (upcomingEvents.length === 0) {
+            upcomingContainer.innerHTML = '<p>Aucun événement prévu cette semaine.</p>';
+            return;
+        }
+
+        upcomingContainer.innerHTML = upcomingEvents.map(event => `
+            <div class="event-item ${event.type}">
+                <div class="event-title">${event.title}</div>
+                <div class="event-time">${new Date(event.date).toLocaleDateString('fr-FR')} à ${event.time}</div>
+            </div>
+        `).join('');
+    }
+
+    // Modales
+    closeModals() {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+    }
+
+    // Notifications
+    showNotification(message, type = 'info') {
+        const notification = document.getElementById('notification');
+        const messageElement = document.getElementById('notification-message');
+        
+        messageElement.textContent = message;
+        notification.className = `notification ${type} show`;
+        
+        // Fermer automatiquement après 5 secondes
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 5000);
+    }
+
+    // Sauvegarde et chargement des données
+    saveData() {
+        const data = {
+            players: this.players,
+            events: this.events,
+            coachProfile: this.coachProfile,
+            selectedCategory: this.selectedCategory
+        };
+        localStorage.setItem('footballManagerData', JSON.stringify(data));
+    }
+
+    loadData() {
+        const savedData = localStorage.getItem('footballManagerData');
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            this.players = data.players || [];
+            this.events = data.events || [];
+            this.coachProfile = data.coachProfile || {};
+            this.selectedCategory = data.selectedCategory || '';
+        }
+    }
+}
+
+// Initialiser l'application
+const footballManager = new FootballManager();
+
+// Fermer les notifications
+document.getElementById('notification-close').addEventListener('click', () => {
+    document.getElementById('notification').classList.remove('show');
+});
 
